@@ -1,46 +1,68 @@
 import React from 'react';
-import { StyleSheet, Text, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
+import SignUp from './client/signUp';
+import SignIn from './client/signIn';
+>>>>>>> caf856da5cd61f12b6a014aea4e15e01cbc29ff1
 import List from './client/eventstodo';
-import Login from './client/login';
+// import navbar from './client/navbar';
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      showSigninUser: false,
-      showSigninOrg: false,
-      showSignupUser: false,
-      showSignupOrg: false,
-      showEvents: false,
-      showCorrentEvent:false,
-      showUserProfile:false,
-      showOrgProfile:false
+      showSignIn: false,
+      showSignUp: false,
+      showMain: true,
     };
   }
-  listComp =() => {
-    this.setState({ showEvents: true });
-    this.setState({ showSignin: false });
+  signin =() => {
+    this.setState({ showSignUp: false});
+    this.setState({ showSignIn: true});
+    this.setState({ showMain: false });
   };
-  userLogin = () => {
-    this.setState({ showSignin: true });
-    this.setState({ showEvents: false });
-  };
-  render() {
-    return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+  signup = () => {
+    this.setState({ showSignUp: true });
+    this.setState({ showSignIn: false });
+    this.setState({ showSMain: false });
+  }
+
+  main() {
+ 
+  const mainComponent =  
+        <View>
         <Image source={require('./images/32799248.png')}/>
-        <Text style={{fontFamily:'Signboard'}}>Wlcom to our applecation ['Humanity'] If you are from our family</Text>
-        <Text style={{fontFamily:'Signboard'}}> and you want to signIn WELCOM from here press on signIn</Text>
-        <TouchableOpacity onPress={this.userLogin}>
+
+        <Text >Wlcom to our applecation ['Humanity'] If you are from our family</Text>
+        <Text > and you want to signIn WELCOM from here press on signIn</Text>
+
+        <TouchableOpacity onPress={this.signin.bind(this)}>
           <Text>Login</Text>
         </TouchableOpacity>
-        {this.state.showLogIn ? <Login /> : null}
-        <Text style={{fontFamily:'Signboard'}}> Or if you want to JOIN US WELCOM from here</Text>
-        <TouchableOpacity onPress={this.listComp}>
+        <Text > Or if you want to JOIN US WELCOM from here</Text>
+        <TouchableOpacity onPress={this.signup.bind(this)}>
           <Text>Sign up</Text>
         </TouchableOpacity>
-        {this.state.showEvents ? <List /> : null}
-      </KeyboardAvoidingView>
+      </View>
+
+   
+    if (this.state.showSignIn && !this.state.mainComp && !this.state.showSignUp) {
+    return <SignIn/>
+  }
+  else if(!this.state.showSignIn && this.state.showMain && !this.state.showSignUp){
+    return mainComponent;
+     
+  }
+    else if (this.state.showSignUp && !this.state.mainComp && !this.state.showSignIn) {
+    return <SignUp/>;
+
+  }
+}
+
+  render() {
+    return (
+      <View style = {styles.container}>
+        {this.main()}
+      </View>
     );
   }
 }

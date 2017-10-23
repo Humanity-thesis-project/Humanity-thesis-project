@@ -4,50 +4,77 @@ module.exports = {
   get : {
     '/' : (req, res, cb) => {
       Orgs.findAll()
-        .then((data) => {
-          cb(data);
+        .then((orgs) => {
+          console.log('found : ' , orgs.length , ' orgs ...');
+          cb(true, orgs);
         })
         .catch((err) => {
           console.log('error getting Orgs : ' , err);
-          cb([]);
+          cb(false, []);
         })
     },
     '/signout' : (req, res, cb) => {
       req.session.destroy((err) => {
         if (err) {
-          console.log('error destroying session !!');
+          console.log('error destroying session !! , error message : ' , err.message);
           cb(false);
         } else {
           cb(true);
         }
       })
-    }
+    },
+    '/orginfo' : (req, res, cb) => {
+      var orgName = req.session.username;
+      Orgs.find({ where : {name : orgName}})
+        .then((org) => {
+          if (org){
+            res.status(302); //302 : found
+            cb(org);
+          } else {
+            res.status(404); //404 : not found
+            cb({})
+          }
+        })
+        .catch((err) => {
+          res.status(500); //500 : internal server error
+          cb({});
+        })
+    },
   },
   post : {
     '/signin' : (req, res, cb) => {
       var info = req.body;
-      //check db for org 
+      console.log('info to orgs/signin :  ', info);
       Orgs.find({where : {name : info.name , password : info.password}})
-        .then((user) => {
-          console.log('signing in for : ', user.get('name'));
-          cb(!!user);
+        .then((org) => {
+          if (org.name) {
+            console.log('signing in for : ', org.get('name'));
+            res.status(202);
+            return cb(true)
+          }
+          res.status(400); //400 : bad request
+          cb(false);
         })
         .catch((err) => {
+          res.status(500); //500 : internal server error
           cb(false);          
         })
     },
     '/signup' : (req, res, cb) => {
       var info = req.body;
-      console.log('info : ', info);
+      console.log('info of org to signup : ', info);
       Orgs.build(info)
-        //add info to db ..
         .save()
-        .then(() => {
-          cb(`recieved org : ${info} and saved`);
+        .then((data) => {
+          var m = `recieved org : ${info.name} and saved`;
+          console.log(m);
+          cb(true , m);
         })
-        .catch(() => {
-          cb(`recieved org : ${info} but not saved `);
-        })      
+        .catch((err) => {
+          var m = `error saving org : ${info} - sign up coz : ${err.message}`;
+          console.log(m);
+          cb(false , m);
+        })
     }
   }
 }
