@@ -5,7 +5,7 @@ export default class logInOrgs extends React.Component {
     super(props);
     this.state = {username:'',password:''};
     this.submitSignIn =()=>{
-        fetch('https://git.heroku.com/thawing-garden-23809.git/orgs/signin',{'method':'POST',
+        fetch('https://thawing-garden-23809.herokuapp.com/orgs/signin',{'method':'POST',
           headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',

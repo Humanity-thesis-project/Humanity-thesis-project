@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
 import SignUp from './client/signUp';
 import SignIn from './client/signIn';
->>>>>>> caf856da5cd61f12b6a014aea4e15e01cbc29ff1
-import List from './client/eventstodo';
-// import navbar from './client/navbar';
+import List from './client/list';
 
 export default class App extends React.Component {
   constructor() {
@@ -24,7 +22,7 @@ export default class App extends React.Component {
     this.setState({ showSignUp: true });
     this.setState({ showSignIn: false });
     this.setState({ showSMain: false });
-  }
+  };
 
   main() {
  

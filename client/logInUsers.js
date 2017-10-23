@@ -6,7 +6,7 @@ export default class loginInUseres extends React.Component {
     this.state = {username:'',password:''};this.submitSignIn =()=>{
       
         let info = this.state;
-        fetch('https://git.heroku.com/thawing-garden-23809.git/users/signin',{'method':'POST',
+        fetch('https://thawing-garden-23809.herokuapp.com/users/signin',{'method':'POST',
           headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
