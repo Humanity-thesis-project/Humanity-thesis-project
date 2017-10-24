@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity} from 'react-native';
 
-import allStyle from './style.js';
 import OptsList from './optslist.js';
 import Userprofile from './userprofile.js';
 import Orgprofile from './orgprofile.js';
 import Eventslist from './eventstodo.js';
+
+import allStyle from './style.js';
 
 const styles = StyleSheet.create(allStyle.navbar);
 

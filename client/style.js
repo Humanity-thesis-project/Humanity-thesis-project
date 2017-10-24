@@ -11,23 +11,21 @@ module.exports = {
       textAlign: 'center',
       margin: 5,
       fontSize:30,
-      width : 50,
-      hight : 50
+      width : 50
     },
     options: {
-      width : 40,
-      hight : 40
+      width : 40
     }
 	},
   OptsList : {
     container : {
-
+      width : 50
     },
     options : {
-
+      width : 50
     }
   },
   userprofile : {
-
+    width : 50
   }
 }

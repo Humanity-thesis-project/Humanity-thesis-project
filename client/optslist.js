@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,TouchableOpacity} from 'react-native';
 
 import allStyle from './style.js';
 
-const styles = StyleSheet.create(allStyle.optsList);
+const styles = StyleSheet.create(allStyle.OptsList);
 
 export default class OptsList extends React.Component {
   constructor(props) {

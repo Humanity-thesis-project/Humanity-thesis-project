@@ -1,7 +1,6 @@
 {
-  "urlRandomness": "3n-sed",
-  "hostType": "tunnel",
-
+  "urlRandomness": "8v-cfn",
+  "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "strict": false,
