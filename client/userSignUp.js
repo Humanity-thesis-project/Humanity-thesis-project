@@ -1,18 +1,16 @@
 import React from 'react';
 import { Text, View, TextInput, KeyboardAvoidingView, Button} from 'react-native';
-
-
-
-
-
+import LogInUsers from './logInUsers';
+                
 
 export default class UserSignUp extends React.Component {
   constructor(){
     super();
     this.state = {
-      username: '' ,
+      username: '',
       email: '',
-      password: ''
+      password: '',
+      signedUp: false
     }
   }
 
@@ -37,9 +35,17 @@ onSignUp () {
       });
 }
 
-render() {
-    return (
-      <View>
+myFunctions(){
+ this.onSignUp();
+ this.setState({signedUp: true});
+}
+
+goToLogIn () {
+  if(this.state.signedUp)
+    return <LogInUsers/>
+
+  else{
+    return <View>
       <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10}}> Sign Up </Text>
         
     <Text>Username:</Text>
@@ -66,17 +72,20 @@ render() {
           secureTextEntry = {true}
           onChangeText={(password) => this.setState({password})}
         />
-        <Button title = "submit" onPress = {this.onSignUp.bind(this)}/>
+        <Button title = "submit" onPress = {this.myFunctions.bind(this)} />
+      </View>
+    }
+}
+
+
+
+
+render() {
+    return (
+      <View>
+        {this.goToLogIn()}
       </View>
     );
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: 'rgb(255, 0, 255)',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

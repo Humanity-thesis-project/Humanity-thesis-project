@@ -1,19 +1,30 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View,TouchableOpacity} from 'react-native';
+
 export default class logInOrgs extends React.Component {
+
   constructor(props) {
     super(props);
-    this.state = {username:'',password:''};
-    this.submitSignIn =()=>{
-        fetch('https://thawing-garden-23809.herokuapp.com/orgs/signin',{'method':'POST',
+    this.state = {
+      username:'',
+      password:''
+    };
+  }
+
+submitSignIn () {
+        fetch('https://thawing-garden-23809.herokuapp.com/orgs/signin',
+          {
+          method:'POST',
           headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           },
-          body:JSON.stringify({username:this.state.username , password:this.state.password})})
+          body:JSON.stringify({
+            username:this.state.username ,
+             password:this.state.password})
+        })
           .then((reponse)=> (console.log('data : ',reponse._bodyInit)))
       }
-  }
   
 
   render() {

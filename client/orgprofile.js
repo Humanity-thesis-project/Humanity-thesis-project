@@ -7,13 +7,36 @@ const styles = StyleSheet.create(allStyle.userprofile);
 export default class Orgprofile extends React.Component {
   constructor(props) {
       super(props);
+  }
+
+  currentEvent (evName){
+
+  };
+  
+  deleteEvent(){
+
+  };
+
+  getOrgProfile (){
+    const profile = 
+    <Text>Orgnization name: {this.props.orgProfile.username}</Text>
+    {Orgnization members : this.props.orgProfile.members.map((member, index) => (<Text>{member.name}</Text>))}
+    <TouchableHighlight onPress = {this.currentEvent(event.name)}>
+    {Orgnization events : this.props.orgProfile.events.map((event, index) => 
+      (<Text>{event.name}</Text>
+        <Text>{event.description}</Text>
+        <Text>{event.time}</Text>
+        <Text>{Event members: event.map(())}</Text>))}
+    </TouchableHighlight>
+
+    if(this.props.orgProfile){
+
     }
+  }
     render() {
       return (
         <View style={styles.container}>
-          <Text>
-            this is org profile
-          </Text>
+          {this.getOrgProfile()}
         </View>
       );
     }

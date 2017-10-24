@@ -6,13 +6,13 @@ const styles = StyleSheet.create(allStyle.userprofile);
 
 export default class Userprofile extends React.Component {
   constructor(props) {
-      super(props);
-    }
+      super(props)
+  }
     render() {
       return (
         <View style={styles.container}>
           <Text>
-            this is user profile
+            {this.props.name[0].username}
           </Text>
         </View>
       );

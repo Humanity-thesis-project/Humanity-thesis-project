@@ -35,7 +35,7 @@ run () {
     return this.state.eventlist.map((event, index) => (<Entryevent key = {index} event = {event} /> ))
 
   return <TouchableHighlight onPress = {this.getEvents.bind(this)}>
-        <Text>HELLO</Text>
+        <Text>Events</Text>
         </TouchableHighlight>
 }
 

@@ -1,25 +1,58 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, TextInput, View,TouchableOpacity, Button} from 'react-native';
+import UserProfile from './userprofile'
+
 export default class loginInUseres extends React.Component {
+
   constructor(props) {
     super(props);
-    this.state = {username:'',password:''};this.submitSignIn =()=>{
+    this.state = {
+      username:'',
+      password:'',
+      signedIn: false,
+      userInfo: []
+    };
+  }
+
+  
+submitSignIn () { 
       
-        let info = this.state;
-        fetch('https://thawing-garden-23809.herokuapp.com/users/signin',{'method':'POST',
+     fetch('https://thawing-garden-23809.herokuapp.com/users/signin',
+      {
+          method:'POST',
           headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           },
-          body:JSON.stringify({username:this.state.username , password:this.state.password})})
-          .then((reponse)=> (console.log('data : ',reponse._bodyInit)))
-      }
-  }
-  
+          body:JSON.stringify({
+            username:this.state.username ,
+            password:this.state.password})
+        })
+          .then((response) => response.json())
+           .then((data) => {
+            console.log(data) 
+              this.state.userInfo[0] = data;
+              this.setState({ signedIn: true})
+          })
+            .catch((error) => {
+              console.error(error);
+     });
+}
 
-  render() {
-    return (
-     <View>
+
+
+
+myFunctions(){
+ this.submitSignIn();
+}
+
+
+goToProfile () {
+  if(this.state.signedIn)
+    return <UserProfile name = {this.state.userInfo}/>
+
+  else{
+    return <View>
       <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10,fontSize:30}}> Sign In </Text>
      <Text>Username:</Text>
       <TextInput
@@ -38,11 +71,22 @@ export default class loginInUseres extends React.Component {
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
         />
-        <TouchableOpacity onPress={this.submitSignIn.bind(this)}>
-        <Text>submitSignIn</Text>
-        </TouchableOpacity>
+        <Button title = "submit" onPress = {this.myFunctions.bind(this)}/>
+      </View>
+    }
+}
+
+
+
+
+render() {
+  return (
+      <View>
+        {this.goToProfile()}
       </View>
     
     );
   }
 }
+
+
