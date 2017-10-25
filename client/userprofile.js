@@ -6,7 +6,7 @@ const styles = StyleSheet.create(allStyle.userprofile);
 
 export default class Userprofile extends React.Component {
   constructor(props) {
-      super(props)
+   super(props)
   }
     render() {
       return (
