@@ -9,12 +9,17 @@ export default class Orgprofile extends React.Component {
       super(props);
   }
 
-  currentEvent (evName){
-
-  };
   
-  deleteEvent(){
-
+  deleteEvent(evName){
+    fetch('https://thawing-garden-23809.herokuapp.com/orgs/deleteEvent',{
+          method:'POST',
+          headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          },
+          body:JSON.stringify({eventName:evName})
+        })
+        .end();
   };
 
   getOrgProfile (){
@@ -25,10 +30,13 @@ export default class Orgprofile extends React.Component {
     <TouchableHighlight onPress = {this.currentEvent(event.name)}>
     {Orgnization events : this.props.orgProfile.events.map((event, index) => 
       (<Text>{event.name}</Text>
-        <Text>{event.description}</Text>
         <Text>{event.time}</Text>
         <Text>{event.description}</Text>
-        <Text>{Event members: event.map((member,index) => (<Text>member</Text>))}</Text>))}
+        <Text>{Event members: event.map((member,index) => (<Text>{member}</Text>))}</Text>
+        <TouchableHighlight onPress = {this.deleteEvent(event.name)}>
+         <Text>Delete event</Text>
+        </TouchableHighlight>
+        ))}
     </TouchableHighlight>
 
     if(this.props.orgProfile){

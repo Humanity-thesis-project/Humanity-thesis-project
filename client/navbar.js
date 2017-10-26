@@ -1,21 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity} from 'react-native';
 
-import OptsList from './optslist.js';
-import Userprofile from './userprofile.js';
-import Orgprofile from './orgprofile.js';
-import Eventslist from './eventstodo.js';
+import OptsList from './optslist';
+import Userprofile from './userprofile';
+import Orgprofile from './orgprofile';
+import List from './list';
 
-import allStyle from './style.js';
+import allStyle from './style';
 
 const styles = StyleSheet.create(allStyle.navbar);
+
+const SideMenu = require('react-native-side-menu');
 
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       opts : false,
-      type :  'user' // props.type
     };
     this.toggleOptions = () => {
       this.setState(previousState => {
@@ -27,16 +28,16 @@ export default class Navbar extends React.Component {
         //return <OptsList whatToView={this.whatToView.bind(this)} />
         return <Text> click to show options </Text>;
       } else if (toShow === "signed out") {
-        //do something to tell app.js to hide this navbar and show only the sign in view 
-        //return props.signedout();
+        // do something to tell app.js to hide this navbar and show only the sign in view 
+        // return props.signedout();
         return <Text> signed out </Text>;
       } else if (toShow['profile']) {
         if (this.State.type === "user"){
-          return <Userprofile profileData={toShow['profile']} />
+          return <Userprofile />
         }
-        return <Orgprofile profileData={toShow['profile']} />
+        return <Orgprofile />
       }
-      return <Eventslist />
+      return <List />
     }
 
     this.whatToView = (clicked) => {
