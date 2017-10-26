@@ -4,6 +4,7 @@ import SignUp from './client/signUp';
 import SignIn from './client/signIn';
 import Userprofile from './client/userprofile';
 // import navbar from './client/navbar';
+import List from './client/list';
 
 export default class App extends React.Component {
   constructor() {
@@ -14,7 +15,7 @@ export default class App extends React.Component {
       showMain: true,
     };
   }
-  signin =() => {
+  signin = () => {
     this.setState({ showSignUp: false});
     this.setState({ showSignIn: true});
     this.setState({ showMain: false });
@@ -60,9 +61,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style = {styles.container}>
-      <Text>ff</Text>
-        <Userprofile userprofile={{"id":1,"username":"Aseel","password":"1234","email":"ashar@Users.thesis","rate":"4","createdAt":"2017-10-23T10:54:22.000Z","updatedAt":"2017-10-23T10:54:22.000Z"}}/>
-      </View>
+      {this.main()}
+       </View>
       
     );
   }

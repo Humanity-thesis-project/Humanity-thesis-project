@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19005,
-  "packagerPort": 19007,
-  "packagerPid": 15331,
-  "expoServerNgrokUrl": "https://8v-cfn.maimai84.humanity-thesis-project.exp.direct",
-  "packagerNgrokUrl": "https://packager.8v-cfn.maimai84.humanity-thesis-project.exp.direct",
-  "ngrokPid": 15350
+  "expoServerPort": 19000,
+  "packagerPort": 19003,
+  "packagerPid": 17364,
+  "expoServerNgrokUrl": "https://cz-x9n.maimai84.humanity-thesis-project.exp.direct",
+  "packagerNgrokUrl": "https://packager.cz-x9n.maimai84.humanity-thesis-project.exp.direct",
+  "ngrokPid": 17377
 }
