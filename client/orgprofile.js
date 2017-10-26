@@ -1,14 +1,37 @@
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import allStyle from './style.js';
-import addEvent from './addevent';
+import Createevents from './createevents';
 
-const styles = StyleSheet.create(allStyle.userprofile);
+// const styles = StyleSheet.create(allStyle.userprofile);
 
 export default class Orgprofile extends React.Component {
   constructor(props) {
       super(props);
+      this.state = {
+        type : "profile",
+        specific : ''
+      }
   }
+
+  currentEvent(evName) {
+    this.setState({type : "current"});
+
+    let events = this.props.orgProfile.events;
+
+    for (var i = 0; i <  events.length; i++) {
+       if(events[i].name === evName){
+        this.setState({specific: events[i]})
+
+        return ;
+       }
+       return null;
+    }
+  };
+
+  createEvent () {
+    this.setState({type:"create"})
+  };
 
   
   deleteEvent(event){
@@ -25,25 +48,44 @@ export default class Orgprofile extends React.Component {
 
   getOrgProfile (){
     const profile = 
-    <Text>Orgnization name: {this.props.orgProfile.username}</Text>
+    <View>
+    <Text>Orgnization name: {this.props.orgProfile.username}</Text>{'\n'}
      
-    {Orgnization members : this.props.orgProfile.members.map((member, index) => (<Text>{member.name}</Text>))}
+    <Text>Orgnization members : this.props.orgProfile.members.map((member, index) => (<Text>{member.name}</Text>))</Text>
+    {'\n'}{'\n'}
     <TouchableHighlight onPress = {this.currentEvent(event.name)}>
-    {Orgnization events : this.props.orgProfile.events.map((event, index) => 
+    <Text>Orgnization events : this.props.orgProfile.events.map((event, index) => 
       (<Text>{event.name}</Text>
         <Text>{event.time}</Text>
-        <Text>{event.description}</Text>
-        <Text>{Event members: event.map((member,index) => (<Text>{member}</Text>))}</Text>
         <TouchableHighlight onPress = {this.deleteEvent(event)}>
          <Text>Delete event</Text>
         </TouchableHighlight>
-        ))}
+        ))</Text>
     </TouchableHighlight>
+    </View>;
 
-    if(this.props.orgProfile){
+    if(this.state.type === "current"){
+      const event = this.state.specific;
+
+      let current = 
+      <View>
+        <Text>Orgnization name: {this.props.orgProfile.username}</Text>{'\n'}{'\n'}
+        <Text>{event.name}</Text>
+        <Text>{event.time}</Text>
+        <Text>{event.location}</Text>
+        <Text>{event.description}</Text>
+        <Text>Event members: event.map((member,index) => (<Text>{member}</Text>))</Text>
+        <TouchableHighlight onPress = {this.deleteEvent(event)}>
+         <Text>Delete event</Text>
+        </TouchableHighlight>
+      </View>
+    }
+    else if(this.state.type === "create"){
+      return <Createevents/>;
+    }
+    else if(this.state.type === "profile"){
       return profile;
     }
-    return null;
   }
     render() {
       return (

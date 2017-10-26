@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
 import SignUp from './client/signUp';
 import SignIn from './client/signIn';
+import Createevents from './client/createevents';
 import List from './client/list';
 
 export default class App extends React.Component {
@@ -13,7 +14,7 @@ export default class App extends React.Component {
       showMain: true,
     };
   }
-  signin =() => {
+  signin = () => {
     this.setState({ showSignUp: false});
     this.setState({ showSignIn: true});
     this.setState({ showMain: false });

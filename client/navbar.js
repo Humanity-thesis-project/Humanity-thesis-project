@@ -1,5 +1,6 @@
-import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity} from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View,TouchableOpacity} from "react-native";
+
 
 import OptsList from './optslist';
 import Userprofile from './userprofile';
@@ -10,7 +11,7 @@ import allStyle from './style';
 
 const styles = StyleSheet.create(allStyle.navbar);
 
-const SideMenu = require('react-native-side-menu');
+// const SideMenu = require('react-native-side-menu');
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -40,20 +41,20 @@ export default class Navbar extends React.Component {
       return <List />
     }
 
-    this.whatToView = (clicked) => {
-      this.toggleOptions();
-      this.currentView(clicked);
+        this.whatToView = (clicked) => {
+            this.toggleOptions();
+            this.currentView(clicked);
+        };
     }
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.optionsContainer} onPress={this.toggleOptions.bind(this)}>
-          <Text style={styles.options}> options </Text>
-        </TouchableOpacity>
-        {this.state.opts && <OptsList whatToView={this.whatToView.bind(this)}/>}
-        {this.currentView()}
-      </View>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.optionsContainer} onPress={this.toggleOptions.bind(this)}>
+                    <Text style={styles.options}> options </Text>
+                </TouchableOpacity>
+                {this.state.opts && <OptsList whatToView={this.whatToView.bind(this)}/>}
+                {this.currentView()}
+            </View>
+        );
+    }
 }
