@@ -10,7 +10,8 @@ export default class Orgprofile extends React.Component {
       super(props);
       this.state = {
         type : "profile",
-        specific : ''
+        specific : "",
+        currentMember:""
       }
   }
 
@@ -27,6 +28,22 @@ export default class Orgprofile extends React.Component {
        }
        return null;
     }
+  };
+
+  getUserprofile (userName){
+    fetch('https://thawing-garden-23809.herokuapp.com/orgs//orgs/orgtousers',{
+      method:'POST',
+      headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          },
+      body:JSON.stringify({memberName:userName})
+    })
+    .then((response) => response.json())
+    .then((data) => this.setState({currentMember: data ,type:"memberProfile"}))
+    .catch((error) => {
+      console.error(error);
+    })
   };
 
   createEvent () {
@@ -51,16 +68,23 @@ export default class Orgprofile extends React.Component {
     <View>
     <Text>Orgnization name: {this.props.orgProfile.username}</Text>{'\n'}
      
-    <Text>Orgnization members : this.props.orgProfile.members.map((member, index) => (<Text>{member.name}</Text>))</Text>
+    <Text>Orgnization members : this.props.orgProfile.members.map((member, index) => (<TouchableHighlight onPress={this.getUserprofile(member.name)}><Text>{member.name}</Text></TouchableHighlight>))</Text>
     {'\n'}{'\n'}
+
     <TouchableHighlight onPress = {this.currentEvent(event.name)}>
+
     <Text>Orgnization events : this.props.orgProfile.events.map((event, index) => 
       (<Text>{event.name}</Text>
+
         <Text>{event.time}</Text>
+
         <TouchableHighlight onPress = {this.deleteEvent(event)}>
+
          <Text>Delete event</Text>
+
         </TouchableHighlight>
         ))</Text>
+
     </TouchableHighlight>
     </View>;
 
@@ -85,6 +109,15 @@ export default class Orgprofile extends React.Component {
     }
     else if(this.state.type === "profile"){
       return profile;
+    }
+    else if(this.state.type === "memberProfile"){
+      return
+         <View>
+          <Text>User name: {currentMember.username}</Text>{'\n'}{'\n'}
+          <Text>{currentMember.phonNumber}</Text>
+          <Text>{currentMember.email}</Text>
+          <Text>{currentMember.Vote}</Text>
+         </View>
     }
   }
     render() {
