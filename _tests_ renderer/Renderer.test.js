@@ -14,6 +14,8 @@ import logInUseres from '../client/logInUsers';
 
 import UserSignUp from '../client/userSignUp';
 
+import Navbar from '../client/navbar';
+
 import renderer from 'react-test-renderer';
  	
 describe('Client test',() =>{
@@ -65,5 +67,14 @@ describe('Client test',() =>{
 
   	expect(tree).toMatchSnapshot();
   });
+
+  it('shows sign up page for users', () => {
+    const tree = renderer.create(
+      <Navbar />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
 
 });
