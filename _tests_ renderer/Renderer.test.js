@@ -12,7 +12,7 @@ import logInOrgs from '../client/logInOrgs';
 
 import logInUseres from '../client/logInUsers';
 
-import Userprofile from '../client/userprofile';
+import UserSignUp from '../client/userSignUp';
 
 import renderer from 'react-test-renderer';
  	
@@ -58,9 +58,9 @@ describe('Client test',() =>{
   	expect(tree).toMatchSnapshot();
   });
 
-  it('shows user profile', () => {
+  it('shows sign up page for users', () => {
   	const tree = renderer.create(
-    	<Userprofile />
+    	<UserSignUp />
   	).toJSON();
 
   	expect(tree).toMatchSnapshot();

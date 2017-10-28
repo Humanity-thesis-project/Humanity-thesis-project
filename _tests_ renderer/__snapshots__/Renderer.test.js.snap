@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`main page after done shows events page 1`] = `<logInUseres />`;
+exports[`Client test after done shows events page 1`] = `<logInUseres />`;
 
-exports[`main page after done shows org profile 1`] = `<logInOrgs />`;
+exports[`Client test after done shows org profile 1`] = `<logInOrgs />`;
 
-exports[`main page shows list of events 1`] = `
+exports[`Client test shows list of events 1`] = `
 <View>
   <View
     accessibilityComponentType={undefined}
@@ -45,7 +45,7 @@ exports[`main page shows list of events 1`] = `
 </View>
 `;
 
-exports[`main page shows main component 1`] = `
+exports[`Client test shows main component 1`] = `
 <View
   style={
     Object {
@@ -149,6 +149,143 @@ exports[`main page shows main component 1`] = `
       >
         Sign up
       </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Client test shows sign up page for users 1`] = `
+<View>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontWeight": "bold",
+          "marginBottom": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+       Sign Up 
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+    >
+      Username:
+    </Text>
+    <TextInput
+      onChangeText={[Function]}
+      placeholder="Enter Username"
+      returnKeyType="next"
+      style={
+        Object {
+          "height": 50,
+          "width": 200,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+    >
+      Email:
+    </Text>
+    <TextInput
+      autoCapitalize="none"
+      keyboardType="email-address"
+      onChangeText={[Function]}
+      placeholder="Enter Email"
+      returnKeyType="next"
+      style={
+        Object {
+          "height": 50,
+          "width": 200,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+    >
+      Password:
+    </Text>
+    <TextInput
+      onChangeText={[Function]}
+      placeholder="Enter Password"
+      returnKeyType="go"
+      secureTextEntry={true}
+      style={
+        Object {
+          "height": 50,
+          "width": 200,
+        }
+      }
+    />
+    <View
+      accessibilityComponentType="button"
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      collapsable={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {},
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "padding": 8,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          submit
+        </Text>
+      </View>
     </View>
   </View>
 </View>
