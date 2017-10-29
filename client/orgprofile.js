@@ -30,14 +30,14 @@ export default class Orgprofile extends React.Component {
     }
   };
 
-  getUserprofile (userName){
-    fetch('https://thawing-garden-23809.herokuapp.com/orgs//orgs/orgtousers',{
+  getUserprofile (userId){
+    fetch('https://thawing-garden-23809.herokuapp.com/events/myevents',{
       method:'POST',
       headers:{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           },
-      body:JSON.stringify({memberName:userName})
+      body:JSON.stringify({user_id:userId})
     })
     .then((response) => response.json())
     .then((data) => this.setState({currentMember: data ,type:"memberProfile"}))
@@ -68,7 +68,7 @@ export default class Orgprofile extends React.Component {
     <View>
     <Text>Orgnization name: {this.props.orgProfile.username}</Text>{'\n'}
      
-    <Text>Orgnization members : this.props.orgProfile.members.map((member, index) => (<TouchableHighlight onPress={this.getUserprofile(member.name)}><Text>{member.name}</Text></TouchableHighlight>))</Text>
+    <Text>Orgnization members : this.props.orgProfile.members.map((member, index) => (<TouchableHighlight onPress={this.getUserprofile(member.user_id)}><Text>{member.name}</Text></TouchableHighlight>))</Text>
     {'\n'}{'\n'}
 
     <TouchableHighlight onPress = {this.currentEvent(event.name)}>

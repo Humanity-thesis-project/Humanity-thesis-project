@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 6290,
-  "expoServerNgrokUrl": "https://vm-8v3.ammarrbk.humanity-thesis-project.exp.direct",
-  "packagerNgrokUrl": "https://packager.vm-8v3.ammarrbk.humanity-thesis-project.exp.direct",
-  "ngrokPid": 6313
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
