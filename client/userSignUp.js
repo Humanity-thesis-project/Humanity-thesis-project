@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TextInput, KeyboardAvoidingView, Button} from "react-native";
+import { Text, View, TextInput, KeyboardAvoidingView,StyleSheet, Button} from "react-native";
 import LogInUsers from "./logInUsers";
                 
 
@@ -46,33 +46,38 @@ export default class UserSignUp extends React.Component {
 
         else{
             return <View>
-                <Text style={{fontWeight: "bold", textAlign: "center", marginBottom: 10}}> Sign Up </Text>
-        
-                <Text>Username:</Text>
+                <Text style={{fontWeight: "bold", textAlign: "center",fontSize:30}}> Sign Up </Text>
+                
+                <Text style={styles.textcontaniar} >Username:</Text>
                 <TextInput
-                    style={{height: 50, width: 200 }}
+                style={styles.textcontaniar1}
+                   
                     placeholder="Enter Username"
                     returnKeyType = "next"
                     onChangeText={(username) => this.setState({username})}
                 />
-                <Text>Email:</Text>
+               
+                <Text style={styles.textcontaniar}>Email:</Text>
                 <TextInput
-                    style={{height: 50, width: 200}}
+                style={styles.textcontaniar1}
+                   
                     placeholder="Enter Email"
                     returnKeyType = "next"
                     keyboardType = "email-address"
                     autoCapitalize = "none"
                     onChangeText={(email) => this.setState({email})}
                 />
-                <Text>Password:</Text>
+                
+                <Text style={styles.textcontaniar}>Password:</Text>
                 <TextInput
-                    style={{height: 50, width: 200}}
+                style={styles.textcontaniar1}
+                   
                     placeholder="Enter Password"
                     returnKeyType = "go"
                     secureTextEntry = {true}
                     onChangeText={(password) => this.setState({password})}
                 />
-                <Button title = "submit" onPress = {this.myFunctions.bind(this)} />
+                <Button  title = "submit" onPress = {this.myFunctions.bind(this)} />
             </View>;
         }
     }
@@ -97,4 +102,38 @@ export default class UserSignUp extends React.Component {
 
 //   },
 // });
-
+const styles = StyleSheet.create({
+  textcontaniar1:{
+    fontSize:20,
+    padding:10,
+    borderColor:'#fff',
+   backgroundColor:'lightblue',
+     margin:5,
+     marginLeft:10,
+     marginRight:10,
+     height:50,
+    width:200,
+    borderBottomLeftRadius:10,
+     borderTopLeftRadius:10,
+     borderTopRightRadius:10,
+    borderBottomRightRadius:10,
+  },
+  
+  textcontaniar:{
+    fontSize:20,
+   padding:10,
+    borderColor:'#fff',
+   backgroundColor:'lightblue',
+     margin:5,
+     marginLeft:10,
+     marginRight:10,
+     borderBottomLeftRadius:10,
+     borderTopLeftRadius:10,
+     borderTopRightRadius:10,
+    borderBottomRightRadius:10, 
+    height:50,
+    width:230
+  
+  }
+  
+});
