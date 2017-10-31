@@ -5,6 +5,7 @@ import SignIn from './client/signIn';
 import Createevents from './client/createevents';
 import List from './client/list';
 
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -29,33 +30,33 @@ export default class App extends React.Component {
   main() {
  
   const mainComponent =  
-        <View>
+        <View style = {styles.container}>
         <Image source={require('./images/32799248.png')}/>
 
-        <Text >Wlcom to our applecation ['Humanity'] If you are from our family</Text>
-        <Text > and you want to signIn WELCOM from here press on signIn</Text>
+        <Text style={styles.cont}>Wellcom to our applecation ['Humanity'] If you are from our family</Text>
+        <Text style={styles.cont} > and you want to signIn WELLCOM from here press on signIn</Text>
 
         <TouchableOpacity onPress={this.signin.bind(this)}>
-          <Text>Login</Text>
+          <Text style={{fontSize:30,padding:30}}>Login</Text>
         </TouchableOpacity>
-        <Text > Or if you want to JOIN US WELCOM from here</Text>
+    <Text style={styles.cont}> Or if you want to JOIN US WELLCOM from here</Text>
         <TouchableOpacity onPress={this.signup.bind(this)}>
-          <Text>Sign up</Text>
+          <Text style={{fontSize:30,padding:30}}>Sign up</Text>
         </TouchableOpacity>
       </View>
 
+
    
     if (this.state.showSignIn && !this.state.mainComp && !this.state.showSignUp) {
-    return <SignIn/>
-  }
-  else if(!this.state.showSignIn && this.state.showMain && !this.state.showSignUp){
-    return mainComponent;
-     
-  }
-    else if (this.state.showSignUp && !this.state.mainComp && !this.state.showSignIn) {
-    return <SignUp/>;
+	    return <SignIn/>
+	}
+	else if(!this.state.showSignIn && this.state.showMain && !this.state.showSignUp){
+		return mainComponent; 
+	}
+	else if (this.state.showSignUp && !this.state.mainComp && !this.state.showSignIn) {
+	return <SignUp/>;
 
-  }
+	}
 }
 
   render() {
@@ -70,9 +71,19 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: "white",
     alignItems: 'center',
     justifyContent: 'center',
+
+
   },
+  cont:{
+    fontSize:16,
+    color:"blue",
+    marginLeft:30,
+    marginRight:30,
+  },
+
+
 });
 AppRegistry.registerComponent('App', () => App);

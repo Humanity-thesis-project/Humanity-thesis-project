@@ -30,21 +30,21 @@ export default class Orgprofile extends React.Component {
     }
   };
 
-  getUserprofile (userId){
-    fetch('https://thawing-garden-23809.herokuapp.com/events/myevents',{
-      method:'POST',
-      headers:{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          },
-      body:JSON.stringify({user_id:userId})
-    })
-    .then((response) => response.json())
-    .then((data) => this.setState({currentMember: data ,type:"memberProfile"}))
-    .catch((error) => {
-      console.error(error);
-    })
-  };
+  // getUserprofile (userId){
+  //   fetch('https://thawing-garden-23809.herokuapp.com/events/myevents',{
+  //     method:'POST',
+  //     headers:{
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json',
+  //         },
+  //     body:JSON.stringify({user_id:userId})
+  //   })
+  //   .then((response) => response.json())
+  //   .then((data) => this.setState({currentMember: data ,type:"memberProfile"}))
+  //   .catch((error) => {
+  //     console.error(error);
+  //   })
+  // };
 
   createEvent () {
     this.setState({type:"create"})
@@ -127,4 +127,5 @@ export default class Orgprofile extends React.Component {
         </View>
       );
     }
-}
+
+  }

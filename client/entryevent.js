@@ -1,23 +1,24 @@
-import React from "react";
 
-import { Text, View,TouchableOpacity,StyleSheet} from "react-native";
+import React from 'react';
+import { Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+
+
 export default class Entryevent extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+    this.callEvPage = () => {
+      props.EvPage(this.props.keys);
     }
-    render() {
-        return(
-            <View style = {styles.cont}>
-                <TouchableOpacity>
-                    <Text style = {styles.container1}>{this.props.event.name}</Text>
-                    <Text style = {styles.container} >{this.props.event.description}</Text>
-                    <Text style = {styles.container}>{this.props.event.location}</Text>
-                    <Text style = {styles.container}>{this.props.event.org_id}</Text>
-                </TouchableOpacity> 
-             
-            </View>
-        );
-    }
+  }
+  render() {
+    return(
+      <View>
+        <TouchableOpacity onPress={this.callEvPage}>
+           <Text>{this.props.event.name}</Text>
+        </TouchableOpacity> 
+      </View>
+    )
+  }
 }
 const styles = StyleSheet.create(
     {
