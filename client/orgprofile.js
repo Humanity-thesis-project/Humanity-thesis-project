@@ -5,6 +5,7 @@ import Createevents from './createevents';
 
 // const styles = StyleSheet.create(allStyle.userprofile);
 
+
 export default class Orgprofile extends React.Component {
   constructor(props) {
       super(props);
@@ -122,8 +123,10 @@ export default class Orgprofile extends React.Component {
   }
     render() {
       return (
-        <View style={styles.container}>
-          {this.getOrgProfile()}
+        <View>
+        <Text>
+          {this.props.info[0].name}
+        </Text>
         </View>
       );
     }

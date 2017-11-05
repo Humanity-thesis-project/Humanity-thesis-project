@@ -1,7 +1,9 @@
-import React from "react";
-import { Text, View, TouchableOpacity, KeyboardAvoidingView,StyleSheet, Image} from "react-native";
-import LogInUsers from "./logInUsers";
-import LogInOrgs from "./logInOrgs";
+
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import LogInUsers from './logInUsers';
+import LogInOrgs from './logInOrgs';
+
 
 export default class SignIn extends React.Component {
     constructor(){
@@ -22,17 +24,8 @@ export default class SignIn extends React.Component {
 
     Greeting() {
  
-        const mainComponent = <View style={styles.container}> 
-      
- <Image style={styles.ImageBackground} source={require('./../images/alps-2886945_960_720.jpg')}><View >
-
- <TouchableOpacity onPress = {this.SignUp.bind(this)}><View style={styles.textcontaniar}><Text style={styles.con}>USER </Text></View></TouchableOpacity>
-            <TouchableOpacity onPress = {this.Sign.bind(this)}><View  style={styles.textcontaniar}><Text style={styles.con}>ORG</Text></View></TouchableOpacity></View>
-
- </Image></View>
-
-  
-       
+  const mainComponent =  <View style = {styles.container}><TouchableOpacity onPress = {this.SignUp.bind(this)} style = {{marginTop:300 }}><Text>USER </Text></TouchableOpacity>
+      <TouchableOpacity onPress = {this.Sign.bind(this)} style = {{marginTop:100 }}><Text> ORG </Text></TouchableOpacity></View>
 
    
         if (this.state.showUser && !this.state.mainComp && !this.state.showOrg) {
@@ -61,43 +54,10 @@ export default class SignIn extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1
-    },
-  ImageBackground: {
-    flex: 1,
-    width:400,
 
-    alignSelf: 'stretch',
-
+  container: {
+    alignItems: 'center',
     justifyContent: 'center',
-  },
-   con:{
-  
- textAlign:'center',
-   justifyContent: 'center',
-    color:'blue',
-    fontSize:30,
-    fontWeight:'bold',
-    fontStyle:'italic',
-    //  borderLeftWidth:2,
-    // borderRightWidth:2
-  },
-  textcontaniar:{
-   padding:10,
-    borderColor:'#fff',
-    // borderWidth:1,
-   backgroundColor:'white',
-    // textShadowOffset:{width:0.5,heigth:0.5},
-    // textShadowRadius:5,
-     margin:10,
-     marginLeft:80,
-     marginRight:80,
-     borderBottomLeftRadius:30,
-     borderTopLeftRadius:30,
-     borderTopRightRadius:30,
-    borderBottomRightRadius:30
-  
-  }
 
+  },
 });

@@ -14,20 +14,19 @@ export default class SignUp extends React.Component {
         };
     }
 
-    SignUp () {
-        this.setState({showUser: true, showOrg: false, mainComp: false});
-    }
-    Sign() {
-        this.setState({showOrg: true, showUser: false, mainComp: false});
-    }
 
-    Greeting() {
-     
-        const mainComponent =  <View style={styles.container}>
-        <Image style={styles.ImageBackground} source={require('./../images/alps-2886945_960_720.jpg')}><View >
-        <TouchableOpacity onPress = {this.SignUp.bind(this)}><View style={styles.textcontaniar}><Text style={styles.con}>USER</Text></View></TouchableOpacity>
-            <TouchableOpacity onPress = {this.Sign.bind(this)}><View  style={styles.textcontaniar}><Text style={styles.con}>ORG</Text></View></TouchableOpacity></View>
- </Image></View>
+SignUp () {
+    this.setState({showUser: true, showOrg: false, mainComp: false});
+}
+Sign() {
+    this.setState({showOrg: true, showUser: false, mainComp: false});
+}
+
+Greeting() {
+ 
+  const mainComponent =  <View style = {{marginTop:280, alignItems: "center" }}><TouchableOpacity onPress = {this.SignUp.bind(this)}><Text>USER </Text></TouchableOpacity>
+      <TouchableOpacity onPress = {this.Sign.bind(this)}><Text> ORG </Text></TouchableOpacity></View>
+
    
         if (this.state.showUser && !this.state.mainComp && !this.state.showOrg) {
             return <UserSignUp/>;
@@ -49,57 +48,9 @@ export default class SignUp extends React.Component {
                 {this.Greeting()}
             </KeyboardAvoidingView>
     
-        );
-    }
 
-}
-const styles = StyleSheet.create({
-    container:{
-        flex:1
-    },
-  ImageBackground: {
-    flex: 1,
-    width:400,
-
-    alignSelf: 'stretch',
-
-    justifyContent: 'center',
-  },
-   con:{
-  
- textAlign:'center',
-   justifyContent: 'center',
-    color:'blue',
-    fontSize:30,
-    fontWeight:'bold',
-    fontStyle:'italic',
-    //  borderLeftWidth:2,
-    // borderRightWidth:2
-  },
-  textcontaniar:{
-   padding:10,
-    borderColor:'#fff',
-    // borderWidth:1,
-   backgroundColor:'white',
-    // textShadowOffset:{width:0.5,heigth:0.5},
-    // textShadowRadius:5,
-     margin:10,
-     marginLeft:80,
-     marginRight:80,
-     borderBottomLeftRadius:30,
-     borderTopLeftRadius:30,
-     borderTopRightRadius:30,
-    borderBottomRightRadius:30
-  
+    );
   }
+}
 
-});
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: 'rgb(255, 0, 255)',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
