@@ -35,7 +35,7 @@ export default class logInOrgs extends React.Component {
            .then((data) => {
             console.log('------------------------------------>')
             console.log(data) 
-              this.state.orgInfo.info = data;
+              this.state.orgInfo = data;
               this.setState({signedIn: true})
           })
             .catch((error) => {
@@ -46,7 +46,7 @@ export default class logInOrgs extends React.Component {
 
 goToProfile () {
   if(this.state.signedIn)
-    return <Navbar info = {this.state.orgInfo.info} profile = {"org"}/>;
+    return <Navbar info = {this.state.orgInfo} profile = {"org"}/>;
 
   else{
     return <View style = {{marginTop:200,  alignItems: 'center' }}>

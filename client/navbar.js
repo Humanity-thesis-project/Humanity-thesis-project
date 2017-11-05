@@ -20,6 +20,7 @@ export default class Navbar extends React.Component {
      myEvents: props.events,
      allEvents: [],
      showProfile:true,
+     showOrgProfile: true,
      showEvents:false,
      getOut: false
     };
@@ -60,17 +61,28 @@ getEvents () {
       console.error(error);
      });
 }
- showMyEvents(){
- 	
- }
+ 
  showprofile(){
   this.setState({showProfile: true})
   this.setState({showEvents: false})
  }
+showOrgProfile(){
+  this.setState({showOrgProfile: true})
+  this.setState({showEvents: false})
+ }
+
  logout(){
   fetch(conf.url + '/users/signout',
       {method:'GET'})
   this.setState({showProfile: false})
+  this.setState({showEvents: false})
+  this.setState({getOut: true})
+ }
+
+  orgLogout(){
+  fetch(conf.url + '/orgs/signout',
+      {method:'GET'})
+  this.setState({showOrgProfile: false})
   this.setState({showEvents: false})
   this.setState({getOut: true})
  }
@@ -82,12 +94,58 @@ getEvents () {
     return null;
   }
 
+  userOrOrg(){
+    if(this.state.type === "user")
+      return this.navb()
+    else if(this.state.type === "org")
+      return this.navbOrg()
+  }
+
    navb() {
+
+    var userProfile = <View>
+      
+      <View style= {{ alignItems:"center",borderColor: 'black', borderRadius: 2,backgroundColor: '#87cefa'}}>
+         <Text style = {{marginTop: 20}}>Welcome {this.state.info.username}{'\n'}{'\n'}</Text>
+        </View>
+        <Image source={require("../images/blue.jpg")} >
+        <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
+          fontWeight: 'bold',color:'white'}}>Email:</Text>
+          <Text style = {{marginTop: 20,fontSize: 20, marginLeft: 50,color:'white' }}>{this.state.info.email}</Text>
+
+          <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
+          fontWeight: 'bold',color:'white'}}>Rate:</Text>
+          <Text style = {{marginTop: 20,color:'white',fontSize: 20, marginLeft: 50 }}>5</Text>
+
+          <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
+          fontWeight: 'bold',color:'white'}}>Phone Number:</Text>
+          <Text style = {{marginTop: 20,color:'white',fontSize: 15, marginLeft: 50,fontSize: 20 }}>0798726360</Text>
+          <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
+          <Button  style = {{width: 50, height: 70}} title = "Edit Profile" onPress = {this.changeEditeFlag.bind(this)}/>
+           <Text>                          </Text>
+          <Button style = {{width: 50, height: 70}} title = "My Events" onPress = {this.showMyEvents.bind(this)}/>
+          </View>
+         </Image>
+        </View>
+
    	if(this.state.type === "user" && this.state.showProfile){
-   	return  <UserProfile events={this.state.myEvents} tag = "myEvents"/>
+   	return  <View> userProfile <UserProfile events={this.state.myEvents} tag = "myEvents"/>
+          </View>
+
    	}else if(this.state.showEvents){
    	return  <List events = {this.state.allEvents} tag = "allEvents"/>
    	}
+     if(this.state.getOut && !this.state.showProfile || !this.state.showEvents){
+      return <App/>
+    }
+  }
+
+  navbOrg() {
+    if(this.state.type === "org" && this.state.showOrgProfile){
+    return  <OrgProfile events={this.state.myEvents} tag = "myEvents"/>
+    }else if(this.state.showEvents){
+    return  <List events = {this.state.allEvents} tag = "allEvents"/>
+    }
      if(this.state.getOut && !this.state.showProfile || !this.state.showEvents){
       return <App/>
     }
@@ -97,13 +155,11 @@ getEvents () {
  	return (
  		<View>
     {this.showNav()}
- 		<View>{this.navb()}</View>
-    
+ 		<View>{this.userOrOrg()}</View>
  		</View>
 
  		)
   }
-
-  
 }
+        
 

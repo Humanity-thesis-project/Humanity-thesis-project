@@ -36,8 +36,8 @@ export default class LogInUsers extends React.Component {
            .then((data) => {
             console.log('------------------------------------>')
             console.log(data) 
-              this.state.userInfo = data;
-              this.setState({signedIn: true})
+              this.setState({userInfo:data});
+              this.setState({signedIn: true});
           })
             .catch((error) => {
                 console.error(error);

@@ -11,7 +11,8 @@ export default class UserEditProf extends React.Component {
       username: "",
       email: "",
       password: "",
-      submitEdite : false 
+      submitEdite : false,
+      newData:{} 
     };
   }
 
@@ -31,6 +32,7 @@ export default class UserEditProf extends React.Component {
       .then((response) => console.log(response))
       .then((data) => {
        console.log(data);
+       this.setState({newData:data});
        this.setState({submitEdite:true});
       })
       .catch((error) => {
@@ -38,8 +40,7 @@ export default class UserEditProf extends React.Component {
       });
   }
 
-  render() {
-
+  editprofileComp(){
     const editprofile = <View style = {{marginTop:200, alignItems: "center" }}>
       <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10}}> update my profile data </Text>
       
@@ -71,9 +72,20 @@ export default class UserEditProf extends React.Component {
     </View>
 
     if(this.state.submitEdite){
-      return <UserProfile/>;
+      return <UserProfile information ={this.state.newData}/>; 
     }
     return editprofile;
-  }  
-    
+  }
+
+  goBack () {
+    this.setState({submitEdite:true})
+  }
+
+  render() {
+    return (
+      <View>
+       {this.editprofileComp()}
+      </View>
+      )
+    }   
   }
