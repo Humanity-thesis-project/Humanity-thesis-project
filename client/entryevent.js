@@ -8,7 +8,8 @@ export default class Entryevent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      evPage:false
+      evPage:false,
+      tag: props.tag
     };
     
   }
@@ -24,7 +25,7 @@ export default class Entryevent extends React.Component {
      <Text style={{color:'white'}}>Click here to view details</Text>
      </View>;
         if(this.state.evPage){
-      return <EventPage event={event}/>
+      return <EventPage event={event} tag = {this.state.tag}/>
         }
     return  list;
   }

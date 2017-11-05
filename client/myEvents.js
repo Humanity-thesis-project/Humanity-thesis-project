@@ -8,14 +8,15 @@ export default class MyEvents extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			events: this.props.events
+			events: this.props.events,
+			tag: props.tag
 		};
 	}
 
 	render(){
 		return (
 			<View>
-				<List events = {this.state.events}/>
+				<List events = {this.state.events} tag = {this.state.tag}/>
 			</View>
 		)
 	}

@@ -25,7 +25,7 @@ export default class Navbar extends React.Component {
     };
     this.nav = <View style={{flexDirection: 'row',
     borderColor: 'black',
-  borderRadius: 2,
+    borderRadius: 2,
       backgroundColor: '#00bfff'}} >
           <Text>         </Text>
           <TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
@@ -84,9 +84,9 @@ getEvents () {
 
    navb() {
    	if(this.state.type === "user" && this.state.showProfile){
-   	return  <UserProfile events={this.state.myEvents}/>
+   	return  <UserProfile events={this.state.myEvents} tag = "myEvents"/>
    	}else if(this.state.showEvents){
-   	return  <List events = {this.state.allEvents}/>;
+   	return  <List events = {this.state.allEvents} tag = "allEvents"/>
    	}
      if(this.state.getOut && !this.state.showProfile || !this.state.showEvents){
       return <App/>

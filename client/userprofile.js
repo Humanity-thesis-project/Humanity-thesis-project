@@ -12,7 +12,8 @@ export default class UserProfile extends React.Component {
         events : props.events,
         information: {},
         editprofile:false,
-        showEvents: false
+        showEvents: false,
+        tag: props.tag
       }
       fetch(conf.url + '/users/userinfo',{
         method:'GET'
@@ -75,7 +76,7 @@ export default class UserProfile extends React.Component {
           </View>;   
       }
       else if(this.state.showEvents && !this.state.editprofile){
-        return <MyEvents events = {this.state.events}/>;
+        return <MyEvents events = {this.state.events} tag = {this.state.tag}/>
       }
     else{
       return profile;
