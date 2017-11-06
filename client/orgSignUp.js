@@ -44,7 +44,7 @@ export default class OrgSignUp extends React.Component {
       return (<LogInOrgs/>);
     } else { 
       return (
-        <View style = {{alignItems:'center',marginTop:170}}>
+        <View style = {{alignItems:'center',marginTop:130}}>
           <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10}}> Sign Up
           </Text>
             

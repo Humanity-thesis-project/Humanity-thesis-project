@@ -48,7 +48,7 @@ onSignUp () {
 
 
   else{
-    return <View style = {{marginTop:200, alignItems: "center" }}>
+    return <View style = {{marginTop:130, alignItems: "center" }}>
       <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10}}> Sign Up </Text>
         
     <Text style = {{marginRight:130}}>Username:</Text>

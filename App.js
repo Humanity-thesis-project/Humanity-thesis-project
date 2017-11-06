@@ -1,6 +1,6 @@
 import React from 'react';
 import conf from './config.js';
-import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity, Dimensions, Button} from 'react-native';
 import SignUp from './client/signUp';
 import SignIn from './client/signIn';
 import Createevents from './client/createevents';
@@ -76,24 +76,14 @@ export default class App extends React.Component {
       </View>
 
   if (this.state.showSignIn && !this.state.showMain && !this.state.showSignUp) {
-    return <View>
-            <SignIn/> 
-            <TouchableOpacity style = {{marginTop:30,alignContent:'center'}} onPress = {this.goBack.bind(this)}>
-            <Image source = {require('./images/back-icon.png')} style={{width: 30, height: 30}}/>
-            </TouchableOpacity>
-          </View>
+    return <SignIn/>;
   }
   else if(!this.state.showSignIn && this.state.showMain && !this.state.showSignUp){
     return mainComponent;
      
   }
   else if(this.state.showSignUp && !this.state.showMain && !this.state.showSignIn) {
-    return <View>
-            <SignUp/> 
-            <TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
-            <Image source = {require('./images/back-icon.png')} style={{width: 30, height: 30}}/>
-            </TouchableOpacity>
-          </View>;
+    return <SignUp/>;
   }
 }
 
@@ -101,6 +91,8 @@ export default class App extends React.Component {
     return (
       <View>
        {this.main()}
+       <Text>{'\n'}{'\n'}</Text>
+       <Button title = "BACK TO HOME PAGE" style = {{marginTop:100}} onPress = {this.goBack.bind(this)}/>
       </View>
     );
   }

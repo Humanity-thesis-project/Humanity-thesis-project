@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TouchableOpacity, KeyboardAvoidingView,StyleSheet,Image} from "react-native";
+import { Text, View, TouchableOpacity, KeyboardAvoidingView,StyleSheet,Image, Button} from "react-native";
 import UserSignUp from "./userSignUp";
 import OrgSignUp from "./orgSignUp";
 
@@ -26,23 +26,19 @@ export default class SignUp extends React.Component {
     }
     Greeting() {
      
-      const mainComponent =  <View style = {{marginTop:280, alignItems: "center" }}><TouchableOpacity onPress = {this.SignUp.bind(this)}><Text>USER </Text></TouchableOpacity>
+      const mainComponent =  <View style = {{marginTop:280, alignItems: "center" }}><TouchableOpacity onPress = {this.SignUp.bind(this)}><Text>USER </Text></TouchableOpacity><Text>{'\n'}{'\n'}</Text>
           <TouchableOpacity onPress = {this.Sign.bind(this)}><Text> ORG </Text></TouchableOpacity></View>
 
        
             if (this.state.showUser && !this.state.mainComp && !this.state.showOrg) {
-                return <View><UserSignUp/><TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
-                <Image source = {require('../images/back-icon.png')} style={{width: 30, height: 30}}/>
-                </TouchableOpacity></View>;
+                return <UserSignUp/>;
             }
             else if(!this.state.showComp && this.state.mainComp && !this.state.showOrg){
                 return mainComponent;
          
             }
             else if (this.state.showOrg && !this.state.mainComp && !this.state.showUser) {
-                return <View><OrgSignUp/><TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
-                <Image source = {require('../images/back-icon.png')} style={{width: 30, height: 30}}/>
-                </TouchableOpacity></View>;
+                return <OrgSignUp/>;
 
             }
         }
@@ -52,6 +48,10 @@ export default class SignUp extends React.Component {
 
             <KeyboardAvoidingView behavior = 'padding'>
                 {this.Greeting()}
+                <Text>{'\n'}{'\n'}</Text>
+                <View style = {{marginLeft:30,width: 300,borderRadius:100}}> 
+               <Button title = "BACK CHOOSE AS WHAT YOU WANT TO SIGN UP"  onPress = {this.goBack.bind(this)}/>
+               </View>
             </KeyboardAvoidingView>
     
 

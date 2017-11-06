@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView,Image} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView,Image, Button} from 'react-native';
 import LogInUsers from './logInUsers';
 import LogInOrgs from './logInOrgs';
 
@@ -29,7 +29,7 @@ export default class SignIn extends React.Component {
     Greeting() {
  
   const mainComponent =  <View style = {styles.container}><TouchableOpacity onPress = {this.SignUp.bind(this)} style = {{marginTop:300 }}><Text>USER </Text></TouchableOpacity>
-      <TouchableOpacity onPress = {this.Sign.bind(this)} style = {{marginTop:100 }}><Text> ORG </Text></TouchableOpacity></View>
+      <TouchableOpacity onPress = {this.Sign.bind(this)} style = {{marginTop:70}}><Text> ORG </Text></TouchableOpacity></View>
 
    
         if (this.state.showUser && !this.state.mainComp && !this.state.showOrg) {
@@ -40,20 +40,21 @@ export default class SignIn extends React.Component {
      
         }
         else if (this.state.showOrg && !this.state.mainComp && !this.state.showUser) {
-            return <View><LogInOrgs/><TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
-            <Image source = {require('../images/back-icon.png')} style={{width: 30, height: 30}}/>
-            </TouchableOpacity></View>;
+            return <LogInOrgs/>;
 
         }
+
     }
 
     render() {
         return (
-
             <KeyboardAvoidingView behavior = 'padding'>
                 {this.Greeting()}
+                <Text>{'\n'}{'\n'}</Text>
+               <View style = {{marginLeft:30,width: 300,borderRadius:100}}> 
+               <Button title = "BACK CHOOSE AS WHAT YOU WANT TO SIGN IN"  onPress = {this.goBack.bind(this)}/>
+               </View>
             </KeyboardAvoidingView>
-    
         );
     }
 

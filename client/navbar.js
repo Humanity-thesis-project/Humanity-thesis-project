@@ -102,7 +102,7 @@ showOrgProfile(){
   }
 
    navb() {
-   	if(this.state.type === "user" && this.state.showProfile){
+   	if(this.state.showProfile){
    	return  <UserProfile showEvents = {this.state.showEvents} editprofile = {this.state.editprofile}  events={this.state.myEvents} tag = "myEvents"/>
    	}else if(this.state.showEvents){
    	return  <List events = {this.state.allEvents} tag = "allEvents"/>
