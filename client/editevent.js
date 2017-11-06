@@ -10,17 +10,14 @@ export default class Createevents extends React.Component {
             description: "",
             location: "",
             time: "",
-            duration:"",
-            agelimit:"",
-            volunteers:"",
             created:false,
             ShowOrgprofile:false
         };
     }
 
-    create () {
-        fetch("https://thawing-garden-23809.herokuapp.com/events/create", {
-            method: "POST",
+    onUpdate () {
+        fetch("https://thawing-garden-23809.herokuapp.com/events/updateevent", {
+            method: "PUT",
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -28,11 +25,11 @@ export default class Createevents extends React.Component {
             body: JSON.stringify({
                 name: this.state.name,
                 description: this.state.description,
-                location:this.state.location,
-                time:this.state.time,
-                agelimit:this.state.agelimit,
-                duration :this.state.duration,
-                volunteers:this.state.volunteers
+                location: this.state.location,
+                time: this.state.time,
+                duration : this.state.duration,
+                ageLimit: this.state.ageLimit,
+                volunteers: this.state.volunteers
             })
         }) .then((response) => console.log(response))
             .then((data) => {
@@ -44,32 +41,32 @@ export default class Createevents extends React.Component {
     }
 
     myFunctions(){
-        this.creat();
+        this.onUpdate();
         this.setState({created: true});
         this.setState({ShowOrgprofile: true});
     }
 
-    goCreate () {
+   render()  {
         
-            return <View>
-                <Text style={{fontWeight: "bold", textAlign: "center", marginBottom: 10}}> Creat </Text>
+            return (<View>
+                <Text style={{fontWeight: "bold", textAlign: "center", marginBottom: 10}}> Update Event </Text>
         
-                <Text>eventname:</Text>
+                <Text> Update eventname:</Text>
                 <TextInput
                     style={{height: 50, width: 200 }}
                     placeholder="Enter eventname"
                     returnKeyType = "next"
                     onChangeText={(eventname) => this.setState({eventname})}
                 />
-                <Text>description:</Text>
+                <Text>Update description:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="desctiption"
                     returnKeyType = "next"
                     
-                    onChangeText={(desctiption) => this.setState({description})}
+                    onChangeText={(desctiption) => this.setState({desctiption})}
                 />
-                <Text>location:</Text>
+                <Text>Update location:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="location"
@@ -77,7 +74,7 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(location) => this.setState({location})}
                 />
-                <Text>time:</Text>
+                <Text>Update time:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="time"
@@ -85,7 +82,7 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(time) => this.setState({time})}
                 />
-                <Text>duration:</Text>
+                <Text>Update duration:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="duration"
@@ -93,15 +90,15 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(duration) => this.setState({duration})}
                 />
-                <Text>agelimit:</Text>
+                <Text>Update ageLimit:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
-                    placeholder="agelimit"
+                    placeholder="ageLimit"
                     returnKeyType = "next"
                     
-                    onChangeText={(agelimit) => this.setState({agelimit})}
+                    onChangeText={(ageLimit) => this.setState({ageLimit})}
                 />
-                <Text>volunteers:</Text>
+                <Text>Update volunteers:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="volunteers"
@@ -109,19 +106,13 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(volunteers) => this.setState({volunteers})}
                 />
+                
                 <Button title = "submit" onPress = {this.myFunctions.bind(this)} />
-            </View>;
+            </View>);
         }
     
 
 
 
 
-    render() {
-        return (
-            <View>
-                {this.goCreate()}
-            </View>
-        );
-    }
-}
+   

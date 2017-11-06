@@ -18,14 +18,12 @@ export default class SignUp extends React.Component {
     goBack (){
         this.setState({showUser: false, showOrg: false, mainComp: true});
     }
-
     SignUp () {
         this.setState({showUser: true, showOrg: false, mainComp: false});
     }
     Sign() {
         this.setState({showOrg: true, showUser: false, mainComp: false});
     }
-
     Greeting() {
      
       const mainComponent =  <View style = {{marginTop:280, alignItems: "center" }}><TouchableOpacity onPress = {this.SignUp.bind(this)}><Text>USER </Text></TouchableOpacity>

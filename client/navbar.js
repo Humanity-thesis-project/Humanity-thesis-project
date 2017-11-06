@@ -21,24 +21,21 @@ export default class Navbar extends React.Component {
      allEvents: [],
      showProfile:true,
      showOrgProfile: true,
+     showOrgEvents: false,
      showEvents:false,
      getOut: false,
      editprofile:false
     };
+
     this.nav = <View style={{flexDirection: 'row',
     borderColor: 'black',
     borderRadius: 2,
       backgroundColor: '#00bfff'}} >
-          <Text>         </Text>
-          <TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
-            <Image source = {require('../images/back-icon.png')} style={{width: 30, height: 30}}/>
-          </TouchableOpacity>
-  			  <Text>       </Text>
-      	<TouchableOpacity style = {{marginTop: 30,alignItems:'center'}} onPress = {this.showprofile.bind(this)}><Text>PROFILE</Text></TouchableOpacity>
-      		<Text>       </Text>
-      	<TouchableOpacity style = {{marginTop: 30}} onPress = {this.getEvents.bind(this)}><Text
-        >FIND EVENTS</Text></TouchableOpacity>
-      		<Text>       </Text>
+  			  <Text>             </Text>
+      	 <TouchableOpacity style = {{marginTop: 30,alignItems:'center'}} onPress = {this.showprofile.bind(this)}><Text>PROFILE</Text></TouchableOpacity>
+      		<Text>                  </Text>
+      	<TouchableOpacity style = {{marginTop: 30}} onPress = {this.getEvents.bind(this)}><Text>FIND EVENTS</Text></TouchableOpacity>
+      		<Text>                 </Text>
       	<TouchableOpacity style = {{marginTop: 30}} onPress = {this.logout.bind(this)}><Text>LOGOUT {'\n'}{'\n'}</Text></TouchableOpacity>
 
       	</View>
@@ -96,10 +93,12 @@ showOrgProfile(){
   }
 
   userOrOrg(){
-    if(this.state.type === "user")
-      return this.navb()
-    else if(this.state.type === "org")
+    
+      
+    if(this.state.type === "org")
       return this.navbOrg()
+    else if(this.state.type === "user")
+      return this.navb()
   }
 
    navb() {
@@ -115,9 +114,7 @@ showOrgProfile(){
 
   navbOrg() {
     if(this.state.type === "org" && this.state.showOrgProfile){
-    return  <OrgProfile events={this.state.myEvents} tag = "myEvents"/>
-    }else if(this.state.showEvents){
-    return  <List events = {this.state.allEvents} tag = "allEvents"/>
+    return  <OrgProfile information = {this.state.info} events = {this.state.events} tag = "orgEvents"/>
     }
      if(this.state.getOut && !this.state.showProfile || !this.state.showEvents){
       return <App/>

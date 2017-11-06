@@ -51,7 +51,7 @@ export default class LogInUsers extends React.Component {
 goToProfile () {
 
   if(this.state.signedIn){
-    return <Navbar info = {this.state.userInfo} profile = {"user"} events = {this.state.userInfo.events}/>
+    return <Navbar info = {this.state.userInfo} profile = "user" events = {this.state.userInfo.events}/>
   } else {
     return (<View style = {{marginTop:200,  alignItems: 'center' }}>
           <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10,fontSize:30}}> Sign In </Text>

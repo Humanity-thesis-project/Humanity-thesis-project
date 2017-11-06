@@ -1,125 +1,90 @@
-import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
-import allStyle from './style.js';
-import Createevents from './createevents';
-
-// const styles = StyleSheet.create(allStyle.userprofile);
+import React from "react";
+import {StyleSheet, Text, View, Image, Button} from "react-native";
+import allStyle from "./style.js";
+import OrgEditProf from './orgEditProf';
+import conf from '../config.js';
+import MyEvents from './myEvents'
 
 
 export default class Orgprofile extends React.Component {
   constructor(props) {
-      super(props);
-      this.state = {
-        type : "profile",
-        specific : "",
-        currentMember:""
+      super(props)
+      this.state= {
+        information: props.information,
+        editprofile:false,
+        showEvents: false,
+        tag: props.tag
       }
+      // fetch(conf.url + '/orgs/orginfo',{
+      //   method:'GET'
+      // })
+      //  .then((response) => response.json())
+      //      .then((data) => {
+      //       console.log('----------------->.  NEW DATA')
+      //       console.log(data) 
+      //         this.setState({information: data.user})
+      //     })
+      //       .catch((error) => {
+      //           console.error(error);
+      //       });
   }
 
-  currentEvent(evName) {
-    this.setState({type : "current"});
 
-    let events = this.props.orgProfile.events;
 
-    for (var i = 0; i <  events.length; i++) {
-       if(events[i].name === evName){
-        this.setState({specific: events[i]})
-
-        return ;
-       }
-       return null;
+    changeEditeFlag () {
+      this.setState({editprofile:true});
     }
-  };
-
-  // getUserprofile (userId){
-  //   fetch('https://thawing-garden-23809.herokuapp.com/events/myevents',{
-  //     method:'POST',
-  //     headers:{
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json',
-  //         },
-  //     body:JSON.stringify({user_id:userId})
-  //   })
-  //   .then((response) => response.json())
-  //   .then((data) => this.setState({currentMember: data ,type:"memberProfile"}))
-  //   .catch((error) => {
-  //     console.error(error);
-  //   })
-  // };
-
-  createEvent () {
-    this.setState({type:"create"})
-  };
-
-  
-  deleteEvent(event){
-    fetch('https://thawing-garden-23809.herokuapp.com/events/deleteevent',{
-          method:'POST',
-          headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          },
-          body:JSON.stringify({event:event})
-        })
-        .end();
-  };
-
-  getOrgProfile (){
-    const profile = 
-    <View>
-    <Text>Orgnization name: {this.props.orgProfile.username}</Text>{'\n'}
-     
-    <Text>Orgnization members : this.props.orgProfile.members.map((member, index) => (<TouchableHighlight onPress={this.getUserprofile(member.user_id)}><Text>{member.name}</Text></TouchableHighlight>))</Text>
-    {'\n'}{'\n'}
-
-    <TouchableHighlight onPress = {this.currentEvent(event.name)}>
-
-    <Text>Orgnization events : this.props.orgProfile.events.map((event, index) => 
-      (<Text>{event.name}</Text>
-
-        <Text>{event.time}</Text>
-
-        <TouchableHighlight onPress = {this.deleteEvent(event)}>
-
-         <Text>Delete event</Text>
-
-        </TouchableHighlight>
-        ))</Text>
-
-    </TouchableHighlight>
-    </View>;
-
-    if(this.state.type === "current"){
-      const event = this.state.specific;
-
-      let current = 
-      <View>
-        <Text>Orgnization name: {this.props.orgProfile.username}</Text>{'\n'}{'\n'}
-        <Text>{event.name}</Text>
-        <Text>{event.time}</Text>
-        <Text>{event.location}</Text>
-        <Text>{event.description}</Text>
-        <Text>Event members: event.map((member,index) => (<Text>{member}</Text>))</Text>
-        <TouchableHighlight onPress = {this.deleteEvent(event)}>
-         <Text>Delete event</Text>
-        </TouchableHighlight>
-      </View>
+    showMyEvents(){
+      this.setState({showEvents: true});
     }
-    else if(this.state.type === "create"){
-      return <Createevents/>;
-    }
-    else if(this.state.type === "profile"){
+
+    editProfile(){
+      var profile = <View>
+      
+      <View style= {{ alignItems:"center",borderColor: 'black', borderRadius: 2,backgroundColor: '#87cefa'}}>
+         <Text style = {{marginTop: 20}}>Welcome {this.state.information.name}{'\n'}{'\n'}</Text>
+        </View>
+        <Image source={require("../images/blue.jpg")} >
+        <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
+          fontWeight: 'bold',color:'white'}}>Email:</Text>
+          <Text style = {{marginTop: 20,fontSize: 20, marginLeft: 50,color:'white' }}>{this.state.information.email}</Text>
+
+          <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
+          fontWeight: 'bold',color:'white'}}>Rate:</Text>
+          <Text style = {{marginTop: 20,color:'white',fontSize: 20, marginLeft: 50 }}>5</Text>
+
+          <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
+          fontWeight: 'bold',color:'white'}}>Phone Number:</Text>
+          <Text style = {{marginTop: 20,color:'white',fontSize: 15, marginLeft: 50,fontSize: 20 }}>0798726360</Text>
+          <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
+          <Button  style = {{width: 50, height: 70}} title = "Edit Profile" onPress = {this.changeEditeFlag.bind(this)}/>
+          <Text>                          </Text>
+          <Button style = {{width: 50, height: 70}} title = "My Events" onPress = {this.showMyEvents.bind(this)}/>
+          </View>
+         </Image>
+                           
+        </View>
+
+      
+      if(this.state.editprofile && !this.state.showEvents){
+        return <OrgEditProf/>;
+      }
+      else if(this.state.showEvents && !this.state.editprofile){
+        return <MyEvents events = {this.state.information.events} tag = {this.state.tag}/>
+      }
+    else{
       return profile;
     }
-    else if(this.state.type === "memberProfile"){
-      return
-         <View>
-          <Text>User name: {currentMember.username}</Text>{'\n'}{'\n'}
-          <Text>{currentMember.phonNumber}</Text>
-          <Text>{currentMember.email}</Text>
-          <Text>{currentMember.Vote}</Text>
-         </View>
-    }
+  }
+    
+
+    render() {
+    return (
+      <View>
+      {this.editProfile()}
+      </View>
+    
+    );
   }
     render() {
       return (

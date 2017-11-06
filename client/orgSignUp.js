@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, TextInput, KeyboardAvoidingView, Button} from "react-native";
 import LogInOrgs from "./logInOrgs";
-
+import conf from '../config.js';
 
 export default class OrgSignUp extends React.Component {
   constructor(){
@@ -71,6 +71,7 @@ export default class OrgSignUp extends React.Component {
             returnKeyType = "next"
             onChangeText={(description) => this.setState({description})}
           />
+          
           <Text style = {{marginRight:130}}>Password:</Text>
           <TextInput
             style={{height: 50, width: 200}}

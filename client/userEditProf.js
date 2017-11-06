@@ -10,6 +10,7 @@ export default class UserEditProf extends React.Component {
     this.state = {
       username: "",
       email: "",
+      age:"",
       password: "",
       submitEdite : false,
       newData:{} 
@@ -26,6 +27,7 @@ export default class UserEditProf extends React.Component {
       body: JSON.stringify({
         username: this.state.username,
         email: this.state.email,
+        age: this.state.age,
         password:this.state.password
       })
     })
@@ -59,6 +61,15 @@ export default class UserEditProf extends React.Component {
         keyboardType = "email-address"
         autoCapitalize = "none"
         onChangeText={(email) => this.setState({email})}
+      />
+      <Text style = {{marginRight:160}}>Update Age:</Text>
+       <TextInput
+        style={{height: 50, width: 200}}
+        placeholder="Enter New Age"
+        returnKeyType = "next"
+        keyboardType = "phone"
+        autoCapitalize = "none"
+        onChangeText={(age) => this.setState({age})}
       />
       <Text style = {{marginRight:130}}>Update Password:</Text>
       <TextInput

@@ -25,6 +25,7 @@ onSignUp () {
   body: JSON.stringify({
     username: this.state.username,
     email: this.state.email,
+    age: this.state.age,
     password:this.state.password
   })
 }) .then((response) => console.log(response))
@@ -65,6 +66,15 @@ onSignUp () {
           keyboardType = "email-address"
           autoCapitalize = "none"
           onChangeText={(email) => this.setState({email})}
+        />
+        <Text style = {{marginRight:160}}>Age:</Text>
+        <TextInput
+          style={{height: 50, width: 200}}
+          placeholder="Enter Age"
+          returnKeyType = "next"
+          keyboardType = "phone"
+          autoCapitalize = "none"
+          onChangeText={(age) => this.setState({age})}
         />
         <Text style = {{marginRight:130}}>Password:</Text>
         <TextInput
