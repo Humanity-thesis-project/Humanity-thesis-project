@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView,Image} from 'react-native';
 import LogInUsers from './logInUsers';
 import LogInOrgs from './logInOrgs';
 
@@ -22,6 +22,10 @@ export default class SignIn extends React.Component {
         this.setState({showOrg: true, showUser: false, mainComp: false});
     }
 
+    goBack (){
+        this.setState({showOrg: false, showUser: false, mainComp: true});
+    }
+
     Greeting() {
  
   const mainComponent =  <View style = {styles.container}><TouchableOpacity onPress = {this.SignUp.bind(this)} style = {{marginTop:300 }}><Text>USER </Text></TouchableOpacity>
@@ -36,7 +40,9 @@ export default class SignIn extends React.Component {
      
         }
         else if (this.state.showOrg && !this.state.mainComp && !this.state.showUser) {
-            return <LogInOrgs/>;
+            return <View><LogInOrgs/><TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
+            <Image source = {require('../images/back-icon.png')} style={{width: 30, height: 30}}/>
+            </TouchableOpacity></View>;
 
         }
     }

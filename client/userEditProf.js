@@ -77,10 +77,6 @@ export default class UserEditProf extends React.Component {
     return editprofile;
   }
 
-  goBack () {
-    this.setState({submitEdite:true})
-  }
-
   render() {
     return (
       <View>

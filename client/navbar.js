@@ -22,7 +22,8 @@ export default class Navbar extends React.Component {
      showProfile:true,
      showOrgProfile: true,
      showEvents:false,
-     getOut: false
+     getOut: false,
+     editprofile:false
     };
     this.nav = <View style={{flexDirection: 'row',
     borderColor: 'black',
@@ -102,36 +103,8 @@ showOrgProfile(){
   }
 
    navb() {
-
-    var userProfile = <View>
-      
-      <View style= {{ alignItems:"center",borderColor: 'black', borderRadius: 2,backgroundColor: '#87cefa'}}>
-         <Text style = {{marginTop: 20}}>Welcome {this.state.info.username}{'\n'}{'\n'}</Text>
-        </View>
-        <Image source={require("../images/blue.jpg")} >
-        <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
-          fontWeight: 'bold',color:'white'}}>Email:</Text>
-          <Text style = {{marginTop: 20,fontSize: 20, marginLeft: 50,color:'white' }}>{this.state.info.email}</Text>
-
-          <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
-          fontWeight: 'bold',color:'white'}}>Rate:</Text>
-          <Text style = {{marginTop: 20,color:'white',fontSize: 20, marginLeft: 50 }}>5</Text>
-
-          <Text style = {{marginTop: 20, marginLeft: 30,fontSize: 20,
-          fontWeight: 'bold',color:'white'}}>Phone Number:</Text>
-          <Text style = {{marginTop: 20,color:'white',fontSize: 15, marginLeft: 50,fontSize: 20 }}>0798726360</Text>
-          <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
-          <Button  style = {{width: 50, height: 70}} title = "Edit Profile" onPress = {this.changeEditeFlag.bind(this)}/>
-           <Text>                          </Text>
-          <Button style = {{width: 50, height: 70}} title = "My Events" onPress = {this.showMyEvents.bind(this)}/>
-          </View>
-         </Image>
-        </View>
-
    	if(this.state.type === "user" && this.state.showProfile){
-   	return  <View> userProfile <UserProfile events={this.state.myEvents} tag = "myEvents"/>
-          </View>
-
+   	return  <UserProfile showEvents = {this.state.showEvents} editprofile = {this.state.editprofile}  events={this.state.myEvents} tag = "myEvents"/>
    	}else if(this.state.showEvents){
    	return  <List events = {this.state.allEvents} tag = "allEvents"/>
    	}

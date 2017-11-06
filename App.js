@@ -29,8 +29,12 @@ export default class App extends React.Component {
   signup = () => {
     this.setState({ showSignUp: true });
     this.setState({ showSignIn: false });
-    this.setState({ showSMain: false });
+    this.setState({ showMain: false });
   };
+
+  
+  
+
 
 
   // isLoggedIn () {
@@ -48,6 +52,12 @@ export default class App extends React.Component {
   //    });
   // }
 
+  goBack (){
+    this.setState({ showSignUp: false });
+    this.setState({ showSignIn: false });
+    this.setState({ showMain: true });
+  }
+
   main() {
  
   const mainComponent =  
@@ -59,21 +69,31 @@ export default class App extends React.Component {
         <TouchableOpacity onPress={this.signin.bind(this)}>
           <Text>Sign In</Text>
         </TouchableOpacity>
-    <Text > Or if you want to JOIN US WELLCOM from here</Text>
+        <Text> Or if you want to JOIN US WELLCOM from here</Text>
         <TouchableOpacity onPress={this.signup.bind(this)}>
           <Text>Sign Up</Text>
         </TouchableOpacity>
       </View>
 
-  if (this.state.showSignIn && !this.state.mainComp && !this.state.showSignUp) {
-    return <SignIn/>
+  if (this.state.showSignIn && !this.state.showMain && !this.state.showSignUp) {
+    return <View>
+            <SignIn/> 
+            <TouchableOpacity style = {{marginTop:30,alignContent:'center'}} onPress = {this.goBack.bind(this)}>
+            <Image source = {require('./images/back-icon.png')} style={{width: 30, height: 30}}/>
+            </TouchableOpacity>
+          </View>
   }
   else if(!this.state.showSignIn && this.state.showMain && !this.state.showSignUp){
     return mainComponent;
      
   }
-  else if(this.state.showSignUp && !this.state.mainComp && !this.state.showSignIn) {
-    return <SignUp/>;
+  else if(this.state.showSignUp && !this.state.showMain && !this.state.showSignIn) {
+    return <View>
+            <SignUp/> 
+            <TouchableOpacity style = {{marginTop:30,marginRight:10}} onPress = {this.goBack.bind(this)}>
+            <Image source = {require('./images/back-icon.png')} style={{width: 30, height: 30}}/>
+            </TouchableOpacity>
+          </View>;
   }
 }
 
