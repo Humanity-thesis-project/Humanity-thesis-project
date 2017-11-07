@@ -8,6 +8,7 @@ import MyEvents from './myEvents'
 
 export default class Orgprofile extends React.Component {
   constructor(props) {
+
       super(props)
       this.state= {
         information: props.information,
@@ -15,18 +16,18 @@ export default class Orgprofile extends React.Component {
         showEvents: false,
         tag: props.tag
       }
-      // fetch(conf.url + '/orgs/orginfo',{
-      //   method:'GET'
-      // })
-      //  .then((response) => response.json())
-      //      .then((data) => {
-      //       console.log('----------------->.  NEW DATA')
-      //       console.log(data) 
-      //         this.setState({information: data.user})
-      //     })
-      //       .catch((error) => {
-      //           console.error(error);
-      //       });
+      fetch(conf.url + '/orgs/orginfo',{
+        method:'GET'
+      })
+       .then((response) => response.json())
+       .then((data) => {
+        console.log('----------------->.  NEW DATA')
+        console.log(data) 
+          this.setState({information: data.org})
+      })
+      .catch((error) => {
+          console.error(error);
+      });
 
     this.showEditProfile = () => {
       props.showEditProfile();
@@ -63,9 +64,8 @@ export default class Orgprofile extends React.Component {
           <Button style = {{width: 50, height: 70}} title = "My Events" onPress = {this.showMyEvents.bind(this)}/>
           </View>
          </Image>
-                           
+
         </View>
-    
     );
   }
 

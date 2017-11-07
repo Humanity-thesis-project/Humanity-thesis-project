@@ -3,28 +3,26 @@ import { StyleSheet, Text, View, TouchableHighLight, Image, Button, TouchableOpa
 } from 'react-native';
 import UserEditProf from './userEditProf';
 import conf from '../config.js';
-import MyEvents from './myEvents';
-import Navbar from './navbar';
 
 export default class UserProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      events : props.events,
-      information: {},
+      events : props.information.events,
+      information: props.information,
       tag: props.tag
     }
     fetch(conf.url + '/users/userinfo',{
-      method:'GET'
-    })
-      .then((response) => response.json())
-      .then((data) => {
+        method:'GET'
+      })
+       .then((response) => response.json())
+       .then((data) => {
         console.log('----------------->.  NEW DATA')
         console.log(data) 
-        this.setState({information: data.user})
+          this.setState({information: data.user})
       })
       .catch((error) => {
-        console.error(error);
+          console.error(error);
       });
   }
   showEditProfile () {
@@ -66,7 +64,6 @@ export default class UserProfile extends React.Component {
   }
 
 }
-
 
 
 
