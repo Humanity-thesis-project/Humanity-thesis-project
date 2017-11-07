@@ -29,7 +29,7 @@ export default class EventPage extends React.Component {
       'Content-Type': 'application/json',
   },
       body: JSON.stringify({
-      id: this.state.event.id,
+      event_id: this.state.event.id,
       org_id:this.state.event.org_id
   })
   })
@@ -69,7 +69,6 @@ onUnJoin() {
 showEv(){
   const myEv =  <View>
        <Image source={require("../images/blue.jpg")} >
-        <TouchableOpacity >
         <Text>{this.props.event.name}</Text>
         <Text>{this.props.event.description}</Text>
         <Text>{this.props.event.location}</Text>
@@ -77,7 +76,6 @@ showEv(){
         <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
         <Text>               </Text>
           <Button title="unjoin" onPress = {this.myUnFunctions.bind(this)} /></View>
-        </TouchableOpacity> 
         </Image>
       </View>
 
@@ -113,5 +111,6 @@ showEv(){
     )
   }
 }
+
 
 

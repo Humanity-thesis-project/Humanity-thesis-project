@@ -67,7 +67,7 @@ export default class Createevents extends React.Component {
                     placeholder="desctiption"
                     returnKeyType = "next"
                     
-                    onChangeText={(desctiption) => this.setState({desctiption})}
+                    onChangeText={(desctiption) => this.setState({description})}
                 />
                 <Text>location:</Text>
                 <TextInput
