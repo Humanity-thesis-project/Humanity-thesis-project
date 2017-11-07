@@ -85,7 +85,7 @@ export default class Navbar extends React.Component {
         {method:'GET'})
     }
     
-    if (this.state.user) {
+    if (this.state.org) {
       fetch(conf.url + '/orgs/signout',
         {method:'GET'})
     }
