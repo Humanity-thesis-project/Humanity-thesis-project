@@ -25,7 +25,7 @@ export default class App extends React.Component {
     this.setState({ showSignUp: false});
     this.setState({ showSignIn: true});
     this.setState({ showMain: false });
-  };
+  }; 
   signup = () => {
     this.setState({ showSignUp: true });
     this.setState({ showSignIn: false });

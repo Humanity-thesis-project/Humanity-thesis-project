@@ -27,19 +27,20 @@ export default class Orgprofile extends React.Component {
       //       .catch((error) => {
       //           console.error(error);
       //       });
+
+    this.showEditProfile = () => {
+      props.showEditProfile();
+    }
+      
+    this.showMyEvents = () => {
+      props.showMyEvents();
+    }
   }
+    
 
-
-
-    changeEditeFlag () {
-      this.setState({editprofile:true});
-    }
-    showMyEvents(){
-      this.setState({showEvents: true});
-    }
-
-    editProfile(){
-      var profile = <View>
+    render() {
+    return (
+       <View>
       
       <View style= {{ alignItems:"center",borderColor: 'black', borderRadius: 2,backgroundColor: '#87cefa'}}>
          <Text style = {{marginTop: 20}}>Welcome {this.state.information.name}{'\n'}{'\n'}</Text>
@@ -57,43 +58,15 @@ export default class Orgprofile extends React.Component {
           fontWeight: 'bold',color:'white'}}>Phone Number:</Text>
           <Text style = {{marginTop: 20,color:'white',fontSize: 15, marginLeft: 50,fontSize: 20 }}>0798726360</Text>
           <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
-          <Button  style = {{width: 50, height: 70}} title = "Edit Profile" onPress = {this.changeEditeFlag.bind(this)}/>
+          <Button  style = {{width: 50, height: 70}} title = "Edit Profile" onPress = {this.showEditProfile.bind(this)}/>
           <Text>                          </Text>
           <Button style = {{width: 50, height: 70}} title = "My Events" onPress = {this.showMyEvents.bind(this)}/>
           </View>
          </Image>
                            
         </View>
-
-      
-      if(this.state.editprofile && !this.state.showEvents){
-        return <OrgEditProf/>;
-      }
-      else if(this.state.showEvents && !this.state.editprofile){
-        return <MyEvents events = {this.state.information.events} tag = {this.state.tag}/>
-      }
-    else{
-      return profile;
-    }
-  }
-    
-
-    render() {
-    return (
-      <View>
-      {this.editProfile()}
-      </View>
     
     );
   }
-    render() {
-      return (
-        <View>
-        <Text>
-          {this.props.info[0].name}
-        </Text>
-        </View>
-      );
-    }
 
 }
