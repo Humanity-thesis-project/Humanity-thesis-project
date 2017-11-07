@@ -1,10 +1,11 @@
 import React from 'react';
 import conf from './config.js';
-import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity, Dimensions, Button} from 'react-native';
 import SignUp from './client/signUp';
 import SignIn from './client/signIn';
-
+import Createevents from './client/createevents';
 import List from './client/list';
+
 import Navbar from './client/navbar';
 export default class App extends React.Component {
   constructor() {
@@ -28,8 +29,13 @@ export default class App extends React.Component {
   signup = () => {
     this.setState({ showSignUp: true });
     this.setState({ showSignIn: false });
-    this.setState({ showSMain: false });
-  }
+    this.setState({ showMain: false });
+  };
+
+  
+  
+
+
 
   // isLoggedIn () {
   //   fetch(conf.url + '/isLoggedIn',
@@ -46,6 +52,12 @@ export default class App extends React.Component {
   //    });
   // }
 
+  goBack (){
+    this.setState({ showSignUp: false });
+    this.setState({ showSignIn: false });
+    this.setState({ showMain: true });
+  }
+
   main() {
  
   const mainComponent =  
@@ -59,21 +71,21 @@ export default class App extends React.Component {
 
           <Text>Sign In</Text>
         </TouchableOpacity>
-    <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}} > Or if you want to JOIN US WELCOME from here</Text>
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> Or if you want to JOIN US WELLCOM from here</Text>
         <TouchableOpacity onPress={this.signup.bind(this)}>
 
           <Text>Sign Up</Text>
         </TouchableOpacity>
      </View>
 
-  if (this.state.showSignIn && !this.state.mainComp && !this.state.showSignUp) {
-    return <SignIn/>
+  if (this.state.showSignIn && !this.state.showMain && !this.state.showSignUp) {
+    return <SignIn/>;
   }
   else if(!this.state.showSignIn && this.state.showMain && !this.state.showSignUp){
     return mainComponent;
      
   }
-  else if(this.state.showSignUp && !this.state.mainComp && !this.state.showSignIn) {
+  else if(this.state.showSignUp && !this.state.showMain && !this.state.showSignIn) {
     return <SignUp/>;
   }
 }
@@ -82,18 +94,11 @@ export default class App extends React.Component {
     return (
       <View>
        {this.main()}
+       <Text>{'\n'}{'\n'}</Text>
+       <Button title = "BACK TO HOME PAGE" style = {{marginTop:100}} onPress = {this.goBack.bind(this)}/>
       </View>
-      
     );
   }
 }
 
-
 AppRegistry.registerComponent('App', () => App);
-
-
-
-    
-  
-//    }
-// });

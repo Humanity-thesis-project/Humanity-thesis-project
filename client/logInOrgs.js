@@ -42,12 +42,15 @@ export default class logInOrgs extends React.Component {
                 console.error(error);
             });
     }
+
+    signOut(){
+      this.setState({signedIn: false})
+    }
   
 
 goToProfile () {
-  if(this.state.signedIn){
-    return <Navbar info = {this.state.orgInfo} profile = {"org"} events = {this.state.orgInfo.events}/>;
-  }
+  if(this.state.signedIn)
+    return <Navbar info = {this.state.orgInfo} profile = {"org"} signOut = {this.signOut.bind(this)} events = {this.state.orgInfo.events} />;
 
   else{
     return(

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView,Image} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView,Image, Button} from 'react-native';
 import LogInUsers from './logInUsers';
 import LogInOrgs from './logInOrgs';
 
@@ -20,6 +20,10 @@ export default class SignIn extends React.Component {
     }
     Sign() {
         this.setState({showOrg: true, showUser: false, mainComp: false});
+    }
+
+    goBack(){
+      this.setState({showUser: false, showOrg: false, mainComp: true});
     }
 
     Greeting() {

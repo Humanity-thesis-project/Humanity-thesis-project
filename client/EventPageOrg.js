@@ -5,7 +5,7 @@ export default class EventPageOrg extends React.Component {
   constructor(props) {
     super(props); 
         this.state = {
-        event: props.events,
+        event: props.event,
         tag: props.tag,
         deleted:false
         };
@@ -27,7 +27,6 @@ export default class EventPageOrg extends React.Component {
        console.log(data)
        console.log(this.state.tag)})
       this.setState({deleted : true})
-       console.log(this.state.deleted)
       //  Alert.alert( 'JOIN ', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
       // })
       .catch((error) => {
@@ -81,4 +80,3 @@ export default class EventPageOrg extends React.Component {
   }
 
 }
-

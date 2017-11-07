@@ -29,7 +29,7 @@ export default class EventPage extends React.Component {
       'Content-Type': 'application/json',
   },
       body: JSON.stringify({
-      id: this.state.event.id,
+      event_id: this.state.event.id,
       org_id:this.state.event.org_id
   })
   })
