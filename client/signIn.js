@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView,Image} from 'react-native';
 import LogInUsers from './logInUsers';
 import LogInOrgs from './logInOrgs';
 
@@ -24,10 +24,23 @@ export default class SignIn extends React.Component {
 
     Greeting() {
  
-  const mainComponent =  <View style = {styles.container}><TouchableOpacity onPress = {this.SignUp.bind(this)} style = {{marginTop:300 }}><Text>USER </Text></TouchableOpacity>
-      <TouchableOpacity onPress = {this.Sign.bind(this)} style = {{marginTop:100 }}><Text> ORG </Text></TouchableOpacity></View>
+  const mainComponent =  
+    <View >
+     <Image source={require("../images/blue.jpg")} >  
+       <View style = {styles.textcontaniar}>
+      <TouchableOpacity onPress = {this.SignUp.bind(this)} style = {{marginTop:200 }}>
+      
+        <Text style = {styles.con}> USER </Text>
+      </TouchableOpacity>
+      </View> 
+      <View style = {styles.textcontaniar}>
+      <TouchableOpacity onPress = {this.Sign.bind(this)}style = {{marginTop:50 }} >
+        <Text style = {styles.con}> ORG </Text>
+      </TouchableOpacity>
+      </View>
+      </Image>
+    </View>
 
-   
         if (this.state.showUser && !this.state.mainComp && !this.state.showOrg) {
             return <LogInUsers/>;
         }
@@ -52,12 +65,20 @@ export default class SignIn extends React.Component {
     }
 
 }
-
 const styles = StyleSheet.create({
-
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    con:{
+   
+  textAlign:'center',
+   justifyContent: 'center',
+    color:'white',
+    fontSize:30,
+    fontWeight:'bold',
+    fontStyle:'italic'
   },
+   textcontaniar:{
+     marginTop:15,
+     marginLeft:50,
+      marginRight:170,
+  
+   }
 });

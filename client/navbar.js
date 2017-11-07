@@ -19,21 +19,24 @@ export default class Navbar extends React.Component {
      myEvents: props.events,
      allEvents: [],
      showProfile:true,
+     showOrgProfile: true,
+     showOrgEvents: false,
      showEvents:false,
      getOut: false
     };
+
     this.nav = <View style={{flexDirection: 'row',
     borderColor: 'black',
     borderRadius: 2,
       backgroundColor: '#00bfff'}} >
-  			  <Text>             </Text>
-      	 <TouchableOpacity style = {{marginTop: 30,alignItems:'center'}} onPress = {this.showprofile.bind(this)}><Text>PROFILE</Text></TouchableOpacity>
-      		<Text>                  </Text>
-      	<TouchableOpacity style = {{marginTop: 30}} onPress = {this.getEvents.bind(this)}><Text>FIND EVENTS</Text></TouchableOpacity>
-      		<Text>                 </Text>
-      	<TouchableOpacity style = {{marginTop: 30}} onPress = {this.logout.bind(this)}><Text>LOGOUT {'\n'}{'\n'}</Text></TouchableOpacity>
+          <Text>             </Text>
+         <TouchableOpacity style = {{marginTop: 30,alignItems:'center'}} onPress = {this.showprofile.bind(this)}><Text>PROFILE</Text></TouchableOpacity>
+          <Text>                  </Text>
+        <TouchableOpacity style = {{marginTop: 30}} onPress = {this.getEvents.bind(this)}><Text>FIND EVENTS</Text></TouchableOpacity>
+          <Text>                 </Text>
+        <TouchableOpacity style = {{marginTop: 30}} onPress = {this.logout.bind(this)}><Text>LOGOUT {'\n'}{'\n'}</Text></TouchableOpacity>
 
-      	</View>
+        </View>
  } 
 getEvents () {
   fetch(conf.url + '/events',{method:'GET'})
@@ -49,17 +52,28 @@ getEvents () {
       console.error(error);
      });
 }
- showMyEvents(){
- 	
- }
+ 
  showprofile(){
   this.setState({showProfile: true})
   this.setState({showEvents: false})
  }
+showOrgProfile(){
+  this.setState({showOrgProfile: true})
+  this.setState({showEvents: false})
+ }
+
  logout(){
   fetch(conf.url + '/users/signout',
       {method:'GET'})
   this.setState({showProfile: false})
+  this.setState({showEvents: false})
+  this.setState({getOut: true})
+ }
+
+  orgLogout(){
+  fetch(conf.url + '/orgs/signout',
+      {method:'GET'})
+  this.setState({showOrgProfile: false})
   this.setState({showEvents: false})
   this.setState({getOut: true})
  }
@@ -71,27 +85,44 @@ getEvents () {
     return null;
   }
 
+  userOrOrg(){
+    
+      
+    if(this.state.type === "org")
+      return this.navbOrg()
+    else if(this.state.type === "user")
+      return this.navb()
+  }
+
    navb() {
-   	if(this.state.type === "user" && this.state.showProfile){
-   	return  <UserProfile events={this.state.myEvents} tag = "myEvents"/>
-   	}else if(this.state.showEvents){
-   	return  <List events = {this.state.allEvents} tag = "allEvents"/>
-   	}
+    if(this.state.type === "user" && this.state.showProfile){
+    return  <UserProfile events={this.state.myEvents} tag = "myEvents"/>
+    }else if(this.state.showEvents){
+    return  <List events = {this.state.allEvents} tag = "allEvents"/>
+    }
+     if(this.state.getOut && !this.state.showProfile || !this.state.showEvents){
+      return <App/>
+    }
+  }
+
+  navbOrg() {
+    if(this.state.type === "org" && this.state.showOrgProfile){
+    return  <OrgProfile information = {this.state.info} events = {this.state.events} tag = "orgEvents"/>
+    }
      if(this.state.getOut && !this.state.showProfile || !this.state.showEvents){
       return <App/>
     }
   }
 
  render() {
- 	return (
- 		<View>
+  return (
+    <View>
     {this.showNav()}
- 		<View>{this.navb()}</View>
- 		</View>
+    <View>{this.userOrOrg()}</View>
+    </View>
 
- 		)
+    )
   }
 
   
 }
-

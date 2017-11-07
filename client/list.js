@@ -10,7 +10,7 @@ export default class List extends React.Component {
     super(props);
     this.state = {
     tag: props.tag
-    };
+        };
   }
   
   
@@ -21,9 +21,7 @@ export default class List extends React.Component {
               {this.props.events.map((event, index) => (<Entryevent key = {index} event = {event} tag={this.state.tag}/> ))}
               </Image>
          
-            </View>
-
-          
+            </View>       
     )
   }
 }

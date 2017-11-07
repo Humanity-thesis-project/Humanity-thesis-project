@@ -16,6 +16,11 @@ export default class EventPage extends React.Component {
       this.setState({joined: true});
   }
 
+   myUnFunctions(){
+      this.onUnJoin();
+      this.setState({unjoined: true});
+  }
+
   onJoin() {
       fetch(conf.url + '/events/join', {
       method: 'POST',
@@ -85,7 +90,8 @@ showEv(){
         <Text>{this.props.event.location}</Text>
         <Text>{this.props.event.time}</Text> 
         <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
-          <Button title="join" onPress = {this.myFunctions.bind(this)} /><Text>               </Text>
+          <Button title="join" onPress = {this.myFunctions.bind(this)} />
+          <Text>               </Text>
           </View>
         </TouchableOpacity> 
         </Image>
@@ -107,27 +113,6 @@ showEv(){
     )
   }
 }
-const styles = StyleSheet.create(
-   {
-        container: {
-    
-            fontSize:20,
-            lineHeight: 24,
-            color: "black"
-        }
-//         container1: {  
-//             fontSize: 14,
-//             lineHeight: 24,
-//             color: "blue"
-//         },
-//         cont: {
-//             backgroundColor:"#99ceff",
-//             width:350,
-//             marginLeft:0,
-//             marginRight:0
-     
-//         //    justifyContent: 'space-between'
-//         }
-   });
+
 
 

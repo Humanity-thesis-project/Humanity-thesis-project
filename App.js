@@ -24,7 +24,7 @@ export default class App extends React.Component {
     this.setState({ showSignUp: false});
     this.setState({ showSignIn: true});
     this.setState({ showMain: false });
-  };
+  }; 
   signup = () => {
     this.setState({ showSignUp: true });
     this.setState({ showSignIn: false });
@@ -49,19 +49,22 @@ export default class App extends React.Component {
   main() {
  
   const mainComponent =  
-        <View >
-        <Image source={require('./images/32799248.png')}/>
-        <Text >Welcom to our application 'Humanity' If you are from our family</Text>
-        <Text > and you want to signIn WELCOM from here press on signIn</Text>
-
+        <View style={{marginTop: 30, marginLeft:80,marginRight:50}} >
+        <Image source={require('./images/200x200-icon-drop.png')}/>
+   
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}>Welcome to our application 'Humanity' If you are from our family</Text>
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> and you want to signIn WELCOME from here press on signIn</Text>
+      
         <TouchableOpacity onPress={this.signin.bind(this)}>
+
           <Text>Sign In</Text>
         </TouchableOpacity>
-    <Text > Or if you want to JOIN US WELLCOM from here</Text>
+    <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}} > Or if you want to JOIN US WELCOME from here</Text>
         <TouchableOpacity onPress={this.signup.bind(this)}>
+
           <Text>Sign Up</Text>
         </TouchableOpacity>
-      </View>
+     </View>
 
   if (this.state.showSignIn && !this.state.mainComp && !this.state.showSignUp) {
     return <SignIn/>
@@ -87,3 +90,10 @@ export default class App extends React.Component {
 
 
 AppRegistry.registerComponent('App', () => App);
+
+
+
+    
+  
+//    }
+// });

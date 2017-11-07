@@ -8,7 +8,7 @@ export default class MyEvents extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			events: this.props.events,
+			events: props.events,
 			tag: props.tag
 		};
 	}

@@ -24,8 +24,23 @@ Sign() {
 
 Greeting() {
  
-  const mainComponent =  <View style = {{marginTop:280, alignItems: "center" }}><TouchableOpacity onPress = {this.SignUp.bind(this)}><Text style={{}}>USER </Text></TouchableOpacity>
-      <TouchableOpacity onPress = {this.Sign.bind(this)}><Text> ORG </Text></TouchableOpacity></View>
+  const mainComponent =
+         <View>
+            <Image source={require("../images/blue.jpg")} >  
+            <View style = {styles.textcontaniar}> 
+                <TouchableOpacity onPress = {this.SignUp.bind(this)} style = {{marginTop:200 }}>
+                <Text style = {styles.con}>USER </Text>
+                </TouchableOpacity>
+            </View>
+            <View style = {styles.textcontaniar}>
+                <TouchableOpacity onPress = {this.Sign.bind(this)} style = {{marginTop:50 }}>
+                <Text style = {styles.con}> ORG </Text>
+                </TouchableOpacity>
+            </View>
+
+            </Image>
+        </View>
+
 
    
         if (this.state.showUser && !this.state.mainComp && !this.state.showOrg) {
@@ -52,5 +67,21 @@ Greeting() {
     );
   }
 }
-
+const styles = StyleSheet.create({
+    con:{
+   
+  textAlign:'center',
+   justifyContent: 'center',
+    color:'white',
+    fontSize:30,
+    fontWeight:'bold',
+    fontStyle:'italic'
+  },
+   textcontaniar:{
+     marginTop:15,
+     marginLeft:50,
+      marginRight:170,
+  
+   }
+});
 
