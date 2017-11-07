@@ -1,22 +1,32 @@
+
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image} from 'react-native';
 
 import conf from '../config.js'
 
 import UserProfile from './userprofile';
 import OrgProfile from './orgprofile';
 import List from './list';
+import Createevents from './createevents';
+import OrgEditProf from './orgEditProf';
+import UserEditProf from './userEditProf';
 
-
+// const SideMenu = require('react-native-side-menu');
 
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
+
+    console.log(props.info.events);
+    console.log('////////////////////////////////////////////////////////////');
+    console.log("user");
+    this.out = props.signOut ;
     this.state = {
-     user: props.profile === 'user',
-     org: props.profile === 'org',
+     profile: props.profile ,
+     user: props.profile == "user",
+     org: props.profile == "org" ,
      info: props.info,
-     myEvents: props.events,
+     myEvents: props.info.events,
      allEvents: [],
      showEditProfile:false,  //edit profile 
      showCreateEvent:false,  //create event
@@ -24,9 +34,9 @@ export default class Navbar extends React.Component {
      showProfile: true,      //profile
      showEvents:false,       //all events
      getOut : false,  
-     current: "profile" 
+     current: "showProfile" 
     };
-
+    console.log(this.state.user);
   }
 
   showEditProfile(){
@@ -47,19 +57,18 @@ export default class Navbar extends React.Component {
     this.setState({showMyEvents : true});
   }
 
-  showProfile () {
+  showProfile (prop) {
+    if (prop) {
+      this.setState({information : prop});
+      if (prop.events) this.setState({myEvents :prop.events});
+    }
     this.state[this.state.current] = false ;
     this.setState({current : "showProfile"});
     this.setState({showProfile : true});
   }
 
-  createEvent () {
-    this.state[this.state.current] = false ;
-    this.setState({current : "createEvent"});
-    this.setState({createEvent : true});
-  }
-
   showEvents () {
+    console.log('showEvents')
     fetch(conf.url + '/events',{method:'GET'})
     .then((response) => response.json())
     .then((data) => {
@@ -76,6 +85,7 @@ export default class Navbar extends React.Component {
   }
 
   logout () {
+    this.out();
       this.state[this.state.current] = false ;
       this.setState({current : "getOut"});
       this.setState({getOut : true});
@@ -94,33 +104,37 @@ export default class Navbar extends React.Component {
   show () {
     //profile
     if (this.state.showProfile) {
-      if (this.state.user) {
-        return <UserProfile events={this.state.myEvents} tag = "myEvents" showEditProfile={this.showEditProfile.bind(this)} showMyEvents={this.showMyEvents.bind(this)} />
-      } else if (this.state.org) {
-        return <OrgProfile information = {this.state.info} events = {this.state.events} tag = "orgEvents" showEditProfile={this.showEditProfile.bind(this)} showMyEvents={this.showMyEvents.bind(this)}/>
-      }
+      if (this.state.org) {
+        return <OrgProfile information = {this.state.info} tag = "orgEvents" showEditProfile={this.showEditProfile.bind(this)} showMyEvents={this.showMyEvents.bind(this)}/>
+      } else {
+        return <UserProfile information = {this.state.info} tag = "myEvents" showEditProfile={this.showEditProfile.bind(this)} showMyEvents={this.showMyEvents.bind(this)} />
+      } 
     //all events => only user
     } else if (this.state.showEvents){
       return <List events = {this.state.allEvents} tag = "allEvents"/>
     //my events =< org and user
     } else if (this.state.showMyEvents){
-      return <List events = {this.state.myEvents} tag = "myEvents"/> //something to show my events
+      return <List events = {this.state.myEvents} tag = {this.state.profile}/> //something to show my events
     // edit profile 
     } else if (this.state.showEditProfile) {
-      return 
+      if (this.state.user) {
+        return <UserEditProf showProfile = {this.showProfile.bind(this)} />
+      } else if (this.state.org) {
+        return <OrgEditProf showProfile = {this.showProfile.bind(this)} />
+      }
     //create event => org 
     } else if (this.state.showCreateEvent) {
-      return ;//<create event />
-    } else {
-      logOut();
+      return <Createevents />;
+    } else if (this.state.getOut){
+      this.logout();
     } 
   }
 
 
    render() {
     if (this.state.user) {
-     	return (
-     		<View>
+      return (
+        <View>
           <View
             style={{flexDirection: 'row',
               borderColor: 'black',
@@ -136,14 +150,14 @@ export default class Navbar extends React.Component {
                     <Text>FIND EVENTS</Text>
                   </TouchableOpacity>
                   <Text>                 </Text>
-          <TouchableOpacity style = {{marginTop: 30}} onPress = {() => {this.logout.bind(this)}}>
+          <TouchableOpacity style = {{marginTop: 30}} onPress = {() => {this.logout.bind(this)()}}>
             <Text>LOGOUT {'\n'}{'\n'}</Text>
           </TouchableOpacity>
         </View>
-   		  <View>{this.show()}</View>
-   		</View>
+        <View>{this.show()}</View>
+      </View>
 
-   		)
+      )
     } else if (this.state.org) {
       return (
         <View>
@@ -158,11 +172,11 @@ export default class Navbar extends React.Component {
             <Text>PROFILE</Text>
           </TouchableOpacity>
           <Text>                  </Text>
-          <TouchableOpacity style = {{marginTop: 30}} onPress = {this.createEvent.bind(this)}>
+          <TouchableOpacity style = {{marginTop: 30}} onPress = {this.showCreateEvent.bind(this)}>
                     <Text>CREATE EVENT</Text>
                   </TouchableOpacity>
                   <Text>                 </Text>
-          <TouchableOpacity style = {{marginTop: 30}} onPress = {() => {this.logout.bind(this)}}>
+          <TouchableOpacity style = {{marginTop: 30}} onPress = {() => {this.logout.bind(this)()}}>
             <Text>LOGOUT {'\n'}{'\n'}</Text>
           </TouchableOpacity>
         </View>
@@ -174,7 +188,5 @@ export default class Navbar extends React.Component {
       return null
     }
   }
-
-  
 }
-
+        

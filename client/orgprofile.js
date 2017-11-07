@@ -7,8 +7,8 @@ import MyEvents from './myEvents'
 
 
 export default class Orgprofile extends React.Component {
-
   constructor(props) {
+
       super(props)
       this.state= {
         information: props.information,
@@ -16,18 +16,18 @@ export default class Orgprofile extends React.Component {
         showEvents: false,
         tag: props.tag
       }
-      // fetch(conf.url + '/orgs/orginfo',{
-      //   method:'GET'
-      // })
-      //  .then((response) => response.json())
-      //      .then((data) => {
-      //       console.log('----------------->.  NEW DATA')
-      //       console.log(data) 
-      //         this.setState({information: data.user})
-      //     })
-      //       .catch((error) => {
-      //           console.error(error);
-      //       });
+      fetch(conf.url + '/orgs/orginfo',{
+        method:'GET'
+      })
+       .then((response) => response.json())
+       .then((data) => {
+        console.log('----------------->.  NEW DATA')
+        console.log(data) 
+          this.setState({information: data.org})
+      })
+      .catch((error) => {
+          console.error(error);
+      });
 
     this.showEditProfile = () => {
       props.showEditProfile();
@@ -37,10 +37,11 @@ export default class Orgprofile extends React.Component {
       props.showMyEvents();
     }
   }
+    
 
-
-    editProfile(){
-      var profile = <View>
+    render() {
+    return (
+       <View>
       
       <View style= {{ alignItems:"center",borderColor: 'black', borderRadius: 2,backgroundColor: '#87cefa'}}>
          <Text style = {{marginTop: 20}}>Welcome {this.state.information.name}{'\n'}{'\n'}</Text>
@@ -64,17 +65,9 @@ export default class Orgprofile extends React.Component {
           </View>
          </Image>
                            
+
         </View>
-
-  }
-    
-
-    render() {
-    return (
-      <View>
-      {this.editProfile()}
-      </View>
-    
     );
   }
+
 }

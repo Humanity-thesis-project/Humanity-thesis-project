@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TextInput, Button} from "react-native";
+import { Text, View, TextInput, Button,Image} from "react-native";
 import conf from "../config"
                 
 export default class OrgEditProf extends React.Component {
@@ -9,7 +9,9 @@ export default class OrgEditProf extends React.Component {
       name: "",
       email: "",
       password: "",
-      description : ""
+      description : "",
+      submitEdite : false ,
+      data : {}
     };
   }
 
@@ -29,26 +31,38 @@ export default class OrgEditProf extends React.Component {
     })
       .then((response) => console.log(response))
       .then(({data}) => {
+        this.setState({data: data})
+        this.setState({submitEdite:true});
        console.log(data);
       })
       .catch((error) => {
         console.error(error);
       });
   }
+  
+ 
 
   render() {
+     if (this.state.submitEdite) {
+      this.props.showProfile(this.state.data);
+      return null;
+    }
+
     return (
-      <View style = {{marginTop:200, alignItems: "center" }}>
-      <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10}}> update my profile data </Text>
+     <View>
+      <Image source={require("../images/blue.jpg")} > 
+      <View style = {{marginTop:10, marginRight: 50 ,marginLeft: 90}}>
+          <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:25,color:"white"}}> 
+ update my profile data </Text>
       
-      <Text style = {{marginRight:130}}>Update Name:</Text>
+     <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Name:</Text>
       <TextInput
         style={{height: 50, width: 200 }}
         placeholder="Enter New Name"
         returnKeyType = "next"
         onChangeText={(name) => this.setState({name})}
       />
-      <Text style = {{marginRight:160}}>Update Email:</Text>
+      <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Email:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Email"
@@ -57,7 +71,7 @@ export default class OrgEditProf extends React.Component {
         autoCapitalize = "none"
         onChangeText={(email) => this.setState({email})}
       />
-      <Text style = {{marginRight:130}}>Update Password:</Text>
+      <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Password:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Password"
@@ -65,7 +79,7 @@ export default class OrgEditProf extends React.Component {
         secureTextEntry = {true}
         onChangeText={(password) => this.setState({password})}
       />
-      <Text style = {{marginRight:130}}>Update Description:</Text>
+      <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Description:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Description"
@@ -73,8 +87,12 @@ export default class OrgEditProf extends React.Component {
         secureTextEntry = {true}
         onChangeText={(description) => this.setState({description})}
       />
+       <View style={{marginLeft: 10,marginRight: 140}}>
       <Button title = "submit" onPress = {this.onUpdate.bind(this)} />
     </View>
+          </View>
+          </Image>
+          </View>
     );
   }
 }

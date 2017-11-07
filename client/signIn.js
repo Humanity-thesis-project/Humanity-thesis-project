@@ -1,8 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
-import LogInUsers from './logInUsers';
-import LogInOrgs from './logInOrgs';
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView,Image, Button} from 'react-native';
 
 
 export default class SignIn extends React.Component {
@@ -22,42 +20,54 @@ export default class SignIn extends React.Component {
         this.setState({showOrg: true, showUser: false, mainComp: false});
     }
 
-    Greeting() {
- 
-  const mainComponent =  <View style = {styles.container}><TouchableOpacity onPress = {this.SignUp.bind(this)} style = {{marginTop:300 }}><Text>USER </Text></TouchableOpacity>
-      <TouchableOpacity onPress = {this.Sign.bind(this)} style = {{marginTop:100 }}><Text> ORG </Text></TouchableOpacity></View>
+    goBack(){
+      this.setState({showUser: false, showOrg: false, mainComp: true});
+    }    
 
-   
-        if (this.state.showUser && !this.state.mainComp && !this.state.showOrg) {
-            return <LogInUsers/>;
-        }
-        else if(!this.state.showComp && this.state.mainComp && !this.state.showOrg){
-            return mainComponent;
-     
-        }
-        else if (this.state.showOrg && !this.state.mainComp && !this.state.showUser) {
-            return <LogInOrgs/>;
-
-        }
-    }
 
     render() {
         return (
 
-            <KeyboardAvoidingView behavior = 'padding'>
-                {this.Greeting()}
-            </KeyboardAvoidingView>
+        <KeyboardAvoidingView behavior = 'padding'>
+                <View >
+         <Image source={require("../images/blue.jpg")} >  
+           <View style = {styles.textcontaniar}>
+          <TouchableOpacity onPress = {() => this.props.show("showSignInUser")} style = {{marginTop:200 }}>
+          
+            <Text style = {styles.con}> USER </Text>
+          </TouchableOpacity>
+          </View> 
+          <View style = {styles.textcontaniar}>
+          <TouchableOpacity onPress = {() => this.props.show("showSignInOrg")} style = {{marginTop:50 }} >
+            <Text style = {styles.con}> ORG </Text>
+          </TouchableOpacity>
+          </View>
+          <Text>{'\n'}{'\n'}</Text>
+       <Button title = "BACK" style = {{marginTop:100}} onPress = {() => this.props.show("showMain")}/>
+          </Image>
+          
+        </View>
+    </KeyboardAvoidingView>
+            
     
         );
     }
 
 }
-
 const styles = StyleSheet.create({
-
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    con:{
+   
+  textAlign:'center',
+   justifyContent: 'center',
+    color:'white',
+    fontSize:30,
+    fontWeight:'bold',
+    fontStyle:'italic'
   },
+   textcontaniar:{
+     marginTop:15,
+     marginLeft:50,
+      marginRight:170,
+  
+   }
 });

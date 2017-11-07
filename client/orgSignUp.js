@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View, TextInput, KeyboardAvoidingView, Button} from "react-native";
-import LogInOrgs from "./logInOrgs";
+import { Text, View, TextInput, KeyboardAvoidingView, Button,Image} from "react-native";
+
 import conf from '../config.js';
 
 export default class OrgSignUp extends React.Component {
@@ -32,6 +32,7 @@ export default class OrgSignUp extends React.Component {
     })
     .then((response) => response.json())
     .then((data) => {
+      this.props.show("showSignInOrg");
      console.log(data)
     })
     .catch((error) => {
@@ -39,23 +40,25 @@ export default class OrgSignUp extends React.Component {
     });
   }
 
-  goToLogIn () {
-    if (this.state.signedUp) {
-      return (<LogInOrgs/>);
-    } else { 
-      return (
-        <View style = {{alignItems:'center',marginTop:170}}>
-          <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10}}> Sign Up
-          </Text>
+
+    render() {
+        return (
+            <View>
+                <View>
+          <Image source={require("../images/blue.jpg")} > 
+            <View style = {{marginTop:50, marginRight: 50 ,marginLeft: 90}}>
+      
+            <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:40,color:"white"}}> Sign Up
+            </Text>
             
-          <Text style = {{marginRight:130}}>Username:</Text>
+          <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Username:</Text>
           <TextInput
             style={{height: 50, width: 200 }}
             placeholder="Enter name"
             returnKeyType = "next"
             onChangeText={(name) => this.setState({name})}
           />
-          <Text style = {{marginRight:160}}>Email:</Text>
+          <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Email:</Text>
           <TextInput
             style={{height: 50, width: 200}}
             placeholder="Enter Email"
@@ -64,7 +67,7 @@ export default class OrgSignUp extends React.Component {
             autoCapitalize = "none"
             onChangeText={(email) => this.setState({email})}
           />
-          <Text style = {{marginRight:120}}>Description:</Text>
+          <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Description:</Text>
           <TextInput
             style={{height: 50, width: 200}}
             placeholder="Enter description of your work"
@@ -72,7 +75,7 @@ export default class OrgSignUp extends React.Component {
             onChangeText={(description) => this.setState({description})}
           />
           
-          <Text style = {{marginRight:130}}>Password:</Text>
+          <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Password:</Text>
           <TextInput
             style={{height: 50, width: 200}}
             placeholder="Enter Password"
@@ -80,15 +83,14 @@ export default class OrgSignUp extends React.Component {
             secureTextEntry = {true}
             onChangeText={(password) => this.setState({password})}
           />
+          <View style={{marginLeft: 10,marginRight: 140}}>
           <Button title = "submit" onPress = {this.onSignUp.bind(this)}/>
-          </View>)
-        }
-    }
-
-    render() {
-        return (
-            <View>
-                { this.goToLogIn() }
+          </View>
+          <Text>{'\n'}{'\n'}</Text>
+       <Button title = "BACK" style = {{marginTop:100}} onPress = {() => this.props.show("showSignUp")}/>
+          </View>
+          </Image>
+          </View>
             </View>
         );
     }
