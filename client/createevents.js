@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TextInput, KeyboardAvoidingView, Button} from "react-native";
+import { Text, View, TextInput, KeyboardAvoidingView, Button, ScrollView} from "react-native";
                 
 
 export default class Createevents extends React.Component {
@@ -119,9 +119,9 @@ export default class Createevents extends React.Component {
 
     render() {
         return (
-            <View>
+            <ScrollView contentContainerStyle={{flexGrow: 1}}>
                 {this.goCreate()}
-            </View>
+            </ScrollView>
         );
     }
 }

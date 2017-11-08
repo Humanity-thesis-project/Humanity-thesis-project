@@ -1,8 +1,8 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 1230,
+  "expoServerNgrokUrl": "https://qp-ihm.htop1.last.exp.direct",
+  "packagerNgrokUrl": "https://packager.qp-ihm.htop1.last.exp.direct",
+  "ngrokPid": 1242
 }
