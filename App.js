@@ -24,51 +24,51 @@ export default class App extends React.Component {
      
      current: "showMain",
 
-     showMain: true,
-     isLogged: false,
-     type:"",
-     info: {}
-   };
-   // const width = Dimensions.get('window').width
-   // const height = Dimensions.get('window').height
- }
- show  (toShow)  {
-   this.state[this.state.current] = false ;
-   this.state[toShow] =  true ;
-   this.setState({current : toShow});
-   
- }; 
+      showMain: true,
+      isLogged: false,
+      type:"",
+      info: {}
+    };
+    // const width = Dimensions.get('window').width
+    // const height = Dimensions.get('window').height
+  }
+  show  (toShow)  {
+    this.state[this.state.current] = false ;
+    this.state[toShow] =  true ;
+    this.setState({current : toShow});
+    
+  }; 
 
- // isLoggedIn () {
- //   fetch(conf.url + '/isLoggedIn',
- //     {method:'GET'})
- //   .then((response) => response.json())
- //     .then((data) => {
- //       console.log('------------------------------------>')
- //       console.log(data)
- //       this.state.isLogged = data.isLoggedIn;
- //       this.state.type = data.type
- //     })
- //     .catch((error) => {
- //       console.error(error);
- //    });
- // }
+  // isLoggedIn () {
+  //   fetch(conf.url + '/isLoggedIn',
+  //     {method:'GET'})
+  //   .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('------------------------------------>')
+  //       console.log(data)
+  //       this.state.isLogged = data.isLoggedIn;
+  //       this.state.type = data.type
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //    });
+  // }
 
- main() {
-
- const mainComponent =  
-       <View style={{marginTop: 30, marginLeft:70,marginRight:50, alignContent:"center"}} >
-       <Image source={require('./images/200x200-icon-drop.png')} style={{marginTop: 30, marginLeft:10}}/>
+  main() {
  
-       <Text style={{fontSize:18,marginTop:20,fontStyle:'italic', marginLeft:10}}>
-        “One Love, One Heart, One Destiny.”{'\n'}-B.M.</Text>
-      <Text style={{fontSize:18,marginTop:20,fontStyle:'italic', marginLeft:10}}>Join Us To Help Make the World a Better Place{'\n'}{'\n'}</Text>
-      <View style={{marginRight:15}}>
-       <Button title="Sign In" onPress={() => this.show("showSignIn")} />
-       <Text>{'\n'}</Text>
-       <Button title="Sign Up" onPress={() => this.show("showSignUp")} />
-       </View>
-    </View>
+  const mainComponent =  
+        <View style={{marginTop: 30, marginLeft:70,marginRight:50, alignContent:"center"}} >
+        <Image source={require('./images/200x200-icon-drop.png')} style={{marginTop: 30, marginLeft:10}}/>
+   
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic', marginLeft:10}}>
+         “One Love, One Heart, One Destiny.”{'\n'}-B.M.</Text>
+       <Text style={{fontSize:18,marginTop:20,fontStyle:'italic', marginLeft:10}}>Join Us To Help Make the World a Better Place{'\n'}{'\n'}</Text>
+       <View style={{marginRight:15}}>
+        <Button title="Sign In" onPress={() => this.show("showSignIn")} />
+        <Text>{'\n'}</Text>
+        <Button title="Sign Up" onPress={() => this.show("showSignUp")} />
+        </View> 
+     </View>
 
 
  if (this.state.showMain) {
