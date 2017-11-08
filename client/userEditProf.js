@@ -50,10 +50,10 @@ export default class UserEditProf extends React.Component {
 
     const editprofile = <View>
       <Image source={require("../images/blue.jpg")} > 
-      <View style = {{marginTop:10, marginRight: 50 ,marginLeft: 90}}>
+      <View style = {{alignItems: "center", marginRight: 120, marginTop: 40}}>
           <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> 
 
-       update my profile data </Text>
+       Update Profile</Text>
       
       <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Username:</Text>
       <TextInput
@@ -87,7 +87,7 @@ export default class UserEditProf extends React.Component {
         secureTextEntry = {true}
         onChangeText={(password) => this.setState({password})}
       />
-       <View style={{marginLeft: 10,marginRight: 140}}>
+       <View style={{marginTop: 20}}>
       <Button title = "submit" onPress = {this.onUpdate.bind(this)} />
       </View>
           </View>

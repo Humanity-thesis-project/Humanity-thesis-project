@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image, ScrollView} from 'react-native';
 
 import conf from '../config.js'
 
@@ -159,11 +159,11 @@ export default class Navbar extends React.Component {
       }
     //create event => org 
     } else if (this.state.showCreateEvent) {
-      return <Createevents />;
+      return <Createevents showProfile = {this.showProfile.bind(this)}/>;
     } else if (this.state.showEventPageOrg) {
-      return <EventPageOrg event = {this.state.currentEvent} showUserProfile = {this.showUserProfileAsOrg.bind(this)} />;
+      return <EventPageOrg event = {this.state.currentEvent} showMyEvents = {this.showMyEvents.bind(this)} showUserProfile = {this.showUserProfileAsOrg.bind(this)} />;
     } else if (this.state.showEventPage) {
-      return <EventPage event = {this.state.currentEvent} tag = {this.state.currentEventTag} />;
+      return <EventPage event = {this.state.currentEvent} showEvents = {this.showEvents.bind(this)} showMyEvents = {this.showMyEvents.bind(this)} tag = {this.state.currentEventTag} />;
     } else if (this.state.showUserProfileAsOrg) {
       return <UserProfileAsOrg information = {this.state.UserProfileAsOrg} />;
     } else if (this.state.showEventsBy) {

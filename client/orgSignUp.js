@@ -9,7 +9,6 @@ export default class OrgSignUp extends React.Component {
     this.state = {
         name: "" ,
         email: "",
-        description: "",
         password: "",
         signedUp: false
     };
@@ -26,7 +25,6 @@ export default class OrgSignUp extends React.Component {
       body: JSON.stringify({
         name: this.state.name,
         email: this.state.email,
-        description: this.state.description,
         password:this.state.password
       })
     })
@@ -46,9 +44,9 @@ export default class OrgSignUp extends React.Component {
             <View>
                 <View>
           <Image source={require("../images/blue.jpg")} > 
-            <View style = {{marginTop:50, marginRight: 50 ,marginLeft: 90}}>
+            <View style = {{marginTop:60, marginRight: 50 ,marginLeft: 90}}>
       
-            <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Sign Up
+            <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:25,color:"white", marginBottom: 30, marginLeft:40 }}> Sign Up
             </Text>
             
           <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Username:</Text>
@@ -67,14 +65,6 @@ export default class OrgSignUp extends React.Component {
             autoCapitalize = "none"
             onChangeText={(email) => this.setState({email})}
           />
-          <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Description:</Text>
-          <TextInput
-            style={{height: 50, width: 200}}
-            placeholder="Enter description of your work"
-            returnKeyType = "next"
-            onChangeText={(description) => this.setState({description})}
-          />
-          
           <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Password:</Text>
           <TextInput
             style={{height: 50, width: 200}}
@@ -82,11 +72,11 @@ export default class OrgSignUp extends React.Component {
             returnKeyType = "go"
             secureTextEntry = {true}
             onChangeText={(password) => this.setState({password})}
-          />
-          <View style={{marginLeft: 10,marginRight: 140}}>
+          /><Text>{'\n'}</Text>
+          <View style={{marginLeft: 10,marginRight: 150}}>
           <Button title = "submit" onPress = {this.onSignUp.bind(this)}/>
           </View>
-          <View style={{marginLeft: 10,marginRight: 140}}>
+          <View style={{marginLeft: 10,marginRight: 150}}>
           <Text>{'\n'}{'\n'}</Text>
        <Button title = "BACK" style = {{marginTop:100}} onPress = {() => this.props.show("showSignUp")}/>
           </View>
@@ -94,6 +84,7 @@ export default class OrgSignUp extends React.Component {
           </Image>
           </View>
             </View>
+            
         );
     }
 

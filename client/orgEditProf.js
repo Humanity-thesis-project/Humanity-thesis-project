@@ -50,19 +50,18 @@ export default class OrgEditProf extends React.Component {
 
     return (
      <View>
-      <Image source={require("../images/blue.jpg")} > 
-      <View style = {{marginTop:10, marginRight: 50 ,marginLeft: 90}}>
-          <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> 
- update my profile data </Text>
+      <View style = {{alignItems: "center", marginTop:20}}>
+          <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20}}> 
+ Update Profile</Text>
       
-     <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Name:</Text>
+     <Text style={{fontWeight: "bold",fontSize:13}}>Update Name:</Text>
       <TextInput
         style={{height: 50, width: 200 }}
         placeholder="Enter New Name"
         returnKeyType = "next"
         onChangeText={(name) => this.setState({name})}
       />
-      <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Email:</Text>
+      <Text style={{fontWeight: "bold",fontSize:13}}>Update Email:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Email"
@@ -71,7 +70,7 @@ export default class OrgEditProf extends React.Component {
         autoCapitalize = "none"
         onChangeText={(email) => this.setState({email})}
       />
-      <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Password:</Text>
+      <Text style={{fontWeight: "bold",fontSize:13}}>Update Password:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Password"
@@ -79,7 +78,7 @@ export default class OrgEditProf extends React.Component {
         secureTextEntry = {true}
         onChangeText={(password) => this.setState({password})}
       />
-      <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Description:</Text>
+      <Text style={{fontWeight: "bold",fontSize:13}}>Update Description:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Description"
@@ -87,11 +86,10 @@ export default class OrgEditProf extends React.Component {
         secureTextEntry = {true}
         onChangeText={(description) => this.setState({description})}
       />
-       <View style={{marginLeft: 10,marginRight: 140}}>
+       <View style={{alignItems:"center", marginTop:20}}>
       <Button title = "submit" onPress = {this.onUpdate.bind(this)} />
     </View>
           </View>
-          </Image>
           </View>
     );
   }

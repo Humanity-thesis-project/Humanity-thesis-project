@@ -35,9 +35,8 @@ export default class EventPage extends React.Component {
   })
  .then((response) => response.json())
       .then((data) => {
-       // console.log(data)
        console.log(this.state.tag)
-       Alert.alert( 'JOIN ', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
+       Alert.alert( 'JOIN ', data.message, [{text: 'OK', onPress: () => this.props.showEvents()}, ], { cancelable: true } )
       })
       .catch((error) => {
         console.error(error);
@@ -59,7 +58,7 @@ onUnJoin() {
  .then((response) => response.json())
       .then((data) => {
        console.log(data)
-       Alert.alert( 'UNJOIN ', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
+       Alert.alert( 'UNJOIN ', data.message, [{text: 'OK', onPress: () => this.props.showMyEvents()}, ], { cancelable: true } )
       })
       .catch((error) => {
         console.error(error);
@@ -71,10 +70,10 @@ showEv(){
        <Image source={require("../images/blue.jpg")} >
         <TouchableOpacity >
          <View style={{marginLeft:30,marginTop: 50}} > 
-        <Text>{this.props.event.name}</Text>
-        <Text>{this.props.event.description}</Text>
-        <Text>{this.props.event.location}</Text>
-        <Text>{this.props.event.time}</Text> 
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.name}</Text>
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.description}</Text>
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.location}</Text>
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.time}</Text> 
         <View style = {{flexDirection:'row', marginTop: 30,marginLeft:10}}>
         <Text>               </Text>
           <Button title="unjoin" onPress = {this.myUnFunctions.bind(this)} /></View>
@@ -88,10 +87,10 @@ showEv(){
        <Image source={require("../images/blue.jpg")} >
         <TouchableOpacity > 
         <View style={{marginLeft:30,marginTop: 50}} > 
-        <Text>{this.props.event.name}</Text>
-        <Text>{this.props.event.description}</Text>
-        <Text>{this.props.event.location}</Text>
-        <Text>{this.props.event.time}</Text> 
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.name}</Text>
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.description}</Text>
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.location}</Text>
+        <Text style={{fontSize: 20, color: "white"}}>{this.props.event.time}</Text> 
         <View style = {{flexDirection:'row', marginTop: 30,marginLeft:30}}>
           <Button title="join" onPress = {this.myFunctions.bind(this)} />
           <Text>               </Text>
