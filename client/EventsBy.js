@@ -34,7 +34,7 @@ export default class EventsBy extends React.Component {
       if (data.done && data.events.length) {
         this.props.showEvents(data);
       } else {
-        Alert.alert( 'SORRY', "no events match the filter !!", [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
+        Alert.alert( 'SORRY', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
       }
     })
     .catch((error) => {
@@ -58,7 +58,7 @@ export default class EventsBy extends React.Component {
         if (data.done && data.events.length) {
           this.props.showEvents(data);
         } else {
-          Alert.alert( 'SORRY', "no events match the filter !!", [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
+          Alert.alert( 'SORRY', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
         }
       })
       .catch((error) => {
