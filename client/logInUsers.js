@@ -1,9 +1,8 @@
 
 import conf from '../config.js'
 import React from 'react';
-import { StyleSheet, Text, TextInput, View,TouchableOpacity, Button} from 'react-native';
+import { StyleSheet, Text, Alert, TextInput, View,TouchableOpacity, Button,Image} from 'react-native';
 import Navbar from './navbar';
-// imsport UserProfile from './userprofile';
 
 export default class LogInUsers extends React.Component {
 
@@ -34,28 +33,38 @@ export default class LogInUsers extends React.Component {
             password:this.state.password})
         }) .then((response) => response.json())
            .then((data) => {
-            console.log('------------------------------------>')
-            console.log(data) 
-              this.state.userInfo = data;
-              this.setState({signedIn: true})
+            if (data.username) {
+                this.state.orgInfo = data;
+                this.setState({signedIn: true})
+              } else {
+                Alert.alert( 'SECURITY ALARM', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
+              }
           })
-            .catch((error) => {
-                console.error(error);
-            });
+          .catch((error) => {
+              console.error(error);
+          });
     }
 
 
+
+    signOut(){
+      // this.state.username = "";
+      // this.state.password = "";
+      this.setState({signedIn: false})
+    }
 
 
 
 goToProfile () {
 
   if(this.state.signedIn){
-    return <Navbar info = {this.state.userInfo} profile = "user" events = {this.state.userInfo.events}/>
+    return <Navbar info = {this.state.userInfo} profile = {"user"} signOut = {this.signOut.bind(this)} />
   } else {
-    return (<View style = {{marginTop:200,  alignItems: 'center' }}>
-          <Text style={{fontWeight: "bold", textAlign: 'center', marginBottom: 10,fontSize:30}}> Sign In </Text>
-         <Text style = {{marginRight:130}}>Username:</Text>
+    return (<View>
+      <Image source={require("../images/blue.jpg")} > 
+      <View style = {{marginTop:170, marginRight: 50 ,marginLeft: 90}}>
+          <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Sign In </Text>
+         <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Username:</Text>
           <TextInput 
               style={{height: 50, width: 200 ,alignItems: 'center'}}
               returnKeyType='next'
@@ -63,7 +72,7 @@ goToProfile () {
               onChangeText={(username) => this.setState({username})}
               value={this.state.username}
             />
-            <Text style = {{marginRight:130}}>Password:</Text>
+            <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Password:</Text>
             <TextInput
               returnKeyType='go'
               style={{height: 50, width: 200,alignItems: 'center'}}
@@ -72,44 +81,18 @@ goToProfile () {
               onChangeText={(password) => this.setState({password})}
               value={this.state.password}
             />
+            <View style={{marginLeft: 10,marginRight: 140}}>
             <Button title = "submit" onPress = {this.submitSignIn.bind(this)}/>
+            </View>
+            <View style={{marginLeft: 10,marginRight: 140}}>
+            <Text>{'\n'}{'\n'}</Text>
+       <Button title = "BACK" style = {{marginTop:100}} onPress = {() => this.props.show("showSignIn")}/>
+          </View>
+          </View>
+          </Image>
           </View>)
     }
   }
-
-
-    // goToProfile () {
-    //     if(this.state.signedIn)
-    //         return <UserProfile info = {this.state.userInfo[0]} profile = {"user"}/>;
-
-    //     else{
-    //         return <View>
-    //             <Text style={{fontWeight: "bold", textAlign: "center", marginBottom: 10,fontSize:30}}> Sign In </Text>
-    //             <Text>Username:</Text>
-    //             <TextInput
-    //                 style={{height: 50, width: 200 ,alignItems: "center"}}
-    //                 returnKeyType='next'
-    //                 placeholder="Enter Yuor Username"
-    //                 onChangeText={(username) => this.setState({username})}
-    //                 value={this.state.username}
-    //             />
-    //             <Text>Password:</Text>
-    //             <TextInput
-    //                 returnKeyType='go'
-    //                 style={{height: 50, width: 200,alignItems: "center"}}
-    //                 placeholder="Enter Your Password"
-    //                 secureTextEntry = {true}
-    //                 onChangeText={(password) => this.setState({password})}
-    //                 value={this.state.password}
-    //             />
-    //             <Button title = "submit" onPress = {this.submitSignIn.bind(this)}/>
-    //         </View>;
-
-    //     }
-
-
-    // }
-
     render() {
         return (
             <View>
@@ -119,5 +102,4 @@ goToProfile () {
         );
     }
 }
-
 

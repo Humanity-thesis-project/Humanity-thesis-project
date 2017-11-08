@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TextInput, KeyboardAvoidingView, Button} from "react-native";
+import { Text, View, TextInput, KeyboardAvoidingView, Button, ScrollView, StyleSheet, Dimensions} from "react-native";
                 
 
 export default class Createevents extends React.Component {
@@ -51,17 +51,17 @@ export default class Createevents extends React.Component {
 
     goCreate () {
         
-            return <View>
-                <Text style={{fontWeight: "bold", textAlign: "center", marginBottom: 10}}> Creat </Text>
+            return <View style = {{alignItems: "center", marginTop: 10}}>
+                <Text style={{fontWeight: "bold", textAlign: "center", marginBottom: 20}}> Creat Event </Text>
         
-                <Text>eventname:</Text>
+                <Text>Event Name:</Text>
                 <TextInput
                     style={{height: 50, width: 200 }}
                     placeholder="Enter eventname"
                     returnKeyType = "next"
                     onChangeText={(eventname) => this.setState({eventname})}
                 />
-                <Text>description:</Text>
+                <Text>Description:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="desctiption"
@@ -69,7 +69,7 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(desctiption) => this.setState({desctiption})}
                 />
-                <Text>location:</Text>
+                <Text>Location:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="location"
@@ -77,7 +77,7 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(location) => this.setState({location})}
                 />
-                <Text>time:</Text>
+                <Text>Time:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="time"
@@ -85,15 +85,7 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(time) => this.setState({time})}
                 />
-                <Text>duration:</Text>
-                <TextInput
-                    style={{height: 50, width: 200}}
-                    placeholder="duration"
-                    returnKeyType = "next"
-                    
-                    onChangeText={(duration) => this.setState({duration})}
-                />
-                <Text>agelimit:</Text>
+                <Text>Age Limit:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="agelimit"
@@ -101,7 +93,7 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(agelimit) => this.setState({agelimit})}
                 />
-                <Text>volunteers:</Text>
+                <Text>Volunteers:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="volunteers"
@@ -122,6 +114,11 @@ export default class Createevents extends React.Component {
             <View>
                 {this.goCreate()}
             </View>
+            
         );
     }
 }
+
+
+
+
