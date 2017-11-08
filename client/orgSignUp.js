@@ -84,6 +84,7 @@ export default class OrgSignUp extends React.Component {
           </Image>
           </View>
             </View>
+            
         );
     }
 
