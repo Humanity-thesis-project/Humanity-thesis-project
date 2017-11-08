@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image, ScrollView} from 'react-native';
 
 import conf from '../config.js'
 
@@ -180,7 +180,7 @@ export default class Navbar extends React.Component {
             <Text>LOGOUT {'\n'}{'\n'}</Text>
           </TouchableOpacity>
         </View>
-        <View>{this.show()}</View>
+        <ScrollView>{this.show()}</ScrollView>
       </View>
 
       )

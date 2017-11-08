@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 1230,
+  "packagerPort": 19002,
+  "packagerPid": 1448,
   "expoServerNgrokUrl": "https://qp-ihm.htop1.last.exp.direct",
   "packagerNgrokUrl": "https://packager.qp-ihm.htop1.last.exp.direct",
-  "ngrokPid": 1242
+  "ngrokPid": 1460
 }
