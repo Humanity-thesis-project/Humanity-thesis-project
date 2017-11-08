@@ -3,7 +3,6 @@ import conf from '../config.js'
 import React from 'react';
 import { StyleSheet, Text, Alert, TextInput, View,TouchableOpacity, Button,Image} from 'react-native';
 import Navbar from './navbar';
-// imsport UserProfile from './userprofile';
 
 export default class LogInUsers extends React.Component {
 
@@ -49,8 +48,8 @@ export default class LogInUsers extends React.Component {
 
 
     signOut(){
-      this.state.username = "";
-      this.state.password = "";
+      // this.state.username = "";
+      // this.state.password = "";
       this.setState({signedIn: false})
     }
 

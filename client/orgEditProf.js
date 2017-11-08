@@ -16,7 +16,7 @@ export default class OrgEditProf extends React.Component {
   }
 
   onUpdate () {
-    fetch(conf.url + 'orgs/editprofile', {
+    fetch(conf.url + '/orgs/editprofile', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -29,7 +29,7 @@ export default class OrgEditProf extends React.Component {
         password:this.state.password
       })
     })
-      .then((response) => console.log(response))
+      .then((response) => response.json())
       .then(({data}) => {
         this.setState({data: data})
         this.setState({submitEdite:true});

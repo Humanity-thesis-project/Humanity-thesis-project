@@ -11,13 +11,12 @@ export default class LogInOrgs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
-      name:'',
+      nameorgs:'',
       password:'',
       signedIn: false,
-      orgInfo: {}
+      orgInfo:{}
     };
-    fetch(conf.url + '/orgs/signout',
+     fetch( conf.url + '/orgs/signout',
       {method:'GET'})
   }
     submitSignIn () { 
@@ -35,7 +34,9 @@ export default class LogInOrgs extends React.Component {
           })
         }).then((response) => response.json())
            .then((data) => {
-              console.log('------------------------------------>')
+              console.log('------------------------------------>');
+              // this.state.name = "";
+              // this.state.password = "";
               console.log(data.events) 
               if (data.name) {
                 this.state.orgInfo = data;
@@ -50,40 +51,40 @@ export default class LogInOrgs extends React.Component {
     }
 
     signOut(){
-      this.state.username = "";
-      this.state.password = "";
+      
       this.setState({signedIn: false})
     }
   
 
 goToProfile () {
-  if(this.state.signedIn)
+  if(this.state.signedIn) {
     return <Navbar info = {this.state.orgInfo} profile = {"org"} signOut = {this.signOut.bind(this)} events = {this.state.orgInfo.events} />;
+  }
 
   else{
-    return(
+    return
       <View>
           <Image source={require("../images/blue.jpg")} > 
           <View style = {{marginTop:170, marginRight: 50 ,marginLeft: 90}}>
           
               <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Sign In </Text>
               <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Orgenization name:</Text>
-          <TextInput
-          style={{height: 50, width: 200 ,alignItems: 'center'}}
-          returnKeyType='next'
-          placeholder="Enter Yuor Username"
-          onChangeText={(name) => this.setState({name})}
-          value={this.state.username}
-         />
+          <TextInput 
+              style={{height: 50, width: 200 ,alignItems: 'center'}}
+              returnKeyType='next'
+              placeholder="Enter Yuor Username"
+              onChangeText={(name) => this.setState({name})}
+              value={this.state.name}
+            />
           <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Password:</Text>
           <TextInput
-          returnKeyType='go'
-          style={{height: 50, width: 200,alignItems: 'center'}}
-          placeholder="Enter Your Password"
-          secureTextEntry = {true}
-          onChangeText={(password) => this.setState({password})}
-          value={this.state.password}
-          />
+              returnKeyType='go'
+              style={{height: 50, width: 200,alignItems: 'center'}}
+              placeholder="Enter Your Password"
+              secureTextEntry = {true}
+              onChangeText={(password) => this.setState({password})}
+              value={this.state.password}
+            />
         <View style={{marginLeft: 10,marginRight: 140}}>
         <Button title = "submit" onPress = {this.submitSignIn.bind(this)}/>
         </View>
@@ -94,7 +95,7 @@ goToProfile () {
        
         </View>
         </Image>
-      </View>)
+      </View>
     }
 }
 

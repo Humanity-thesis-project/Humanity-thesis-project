@@ -57,20 +57,17 @@ export default class App extends React.Component {
   main() {
  
   const mainComponent =  
-        <View style={{marginTop: 30, marginLeft:80,marginRight:50}} >
-        <Image source={require('./images/200x200-icon-drop.png')}/>
+        <View style={{marginTop: 30, marginLeft:70,marginRight:50, alignContent:"center"}} >
+        <Image source={require('./images/200x200-icon-drop.png')} style={{marginTop: 30, marginLeft:10}}/>
    
-        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}>Welcome to our application 'Humanity' If you are from our family</Text>
-        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> and you want to signIn WELCOME from here press on signIn</Text>
-      
-        <Button title="signIn" onPress={() => this.show("showSignIn")} />
-
-       
-        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> Or if you want to JOIN US WELLCOM from here</Text>
-        <Button title="signUp" onPress={() => this.show("showSignUp")} />
-
-        
-        
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic', marginLeft:10}}>
+         “One Love, One Heart, One Destiny.”{'\n'}-B.M.</Text>
+       <Text style={{fontSize:18,marginTop:20,fontStyle:'italic', marginLeft:10}}>Join Us To Help Make the World a Better Place{'\n'}{'\n'}</Text>
+       <View style={{marginRight:15}}>
+        <Button title="Sign In" onPress={() => this.show("showSignIn")} />
+        <Text>{'\n'}</Text>
+        <Button title="Sign Up" onPress={() => this.show("showSignUp")} />
+        </View> 
      </View>
 
 

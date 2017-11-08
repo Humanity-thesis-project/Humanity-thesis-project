@@ -32,13 +32,14 @@ export default class SignIn extends React.Component {
                 <View >
          <Image source={require("../images/blue.jpg")} >  
            <View style = {styles.textcontaniar}>
-          <TouchableOpacity onPress = {() => this.props.show("showSignInUser")} style = {{marginTop:200 }}>
+           <Text style={{color:'white', marginBottom:80, fontSize:17,textAlign:'center'}}>Please Select User If You Want To Volunteer{'\n'}Or Org If You Want To Create And Manage Your Events</Text>
+          <TouchableOpacity onPress = {() => this.props.show("showSignInUser")} >
           
             <Text style = {styles.con}> USER </Text>
           </TouchableOpacity>
           </View> 
           <View style = {styles.textcontaniar}>
-          <TouchableOpacity onPress = {() => this.props.show("showSignInOrg")} style = {{marginTop:50 }} >
+          <TouchableOpacity onPress = {() => this.props.show("showSignInOrg")}  >
             <Text style = {styles.con}> ORG </Text>
           </TouchableOpacity>
           </View>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     fontStyle:'italic'
   },
    textcontaniar:{
-     marginTop:15,
+     marginTop:100,
      marginLeft:50,
       marginRight:170,
   

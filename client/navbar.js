@@ -223,7 +223,7 @@ export default class Navbar extends React.Component {
             <Text>LOGOUT {'\n'}{'\n'}</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView>{this.show()}</ScrollView>
+        <View>{this.show()}</View>
       </View>
 
       )
