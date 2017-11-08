@@ -1,35 +1,43 @@
 import React from 'react';
 import conf from './config.js';
-import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity, Dimensions} from 'react-native';
-import SignUp from './client/signUp';
-import SignIn from './client/signIn';
+import { StyleSheet, Text, View, AppRegistry, Image, KeyboardAvoidingView, TouchableOpacity, Dimensions, Button} from 'react-native';
 
-import List from './client/list';
-import Navbar from './client/navbar';
+import SignUp from './client/signUp';
+import OrgSignUp from './client/orgSignUp';
+import UserSignUp from './client/userSignUp';
+
+import SignIn from './client/signIn';
+import LogInOrgs from './client/LogInOrgs';
+import LogInUsers from './client/logInUsers';
+
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       showSignIn: false,
+      showSignInOrg: false,
+      showSignInUser: false,
+
       showSignUp: false,
+      showSignUpOrg: false,
+      showSignUpUser: false,
+      
+      current: "showMain",
+
       showMain: true,
       isLogged: false,
       type:"",
       info: {}
     };
-    const width = Dimensions.get('window').width
-    const height = Dimensions.get('window').height
+    // const width = Dimensions.get('window').width
+    // const height = Dimensions.get('window').height
   }
-  signin = () => {
-    this.setState({ showSignUp: false});
-    this.setState({ showSignIn: true});
-    this.setState({ showMain: false });
-  };
-  signup = () => {
-    this.setState({ showSignUp: true });
-    this.setState({ showSignIn: false });
-    this.setState({ showSMain: false });
-  }
+  show  (toShow)  {
+    this.state[this.state.current] = false ;
+    this.state[toShow] =  true ;
+    this.setState({current : toShow});
+    
+  }; 
 
   // isLoggedIn () {
   //   fetch(conf.url + '/isLoggedIn',
@@ -49,29 +57,39 @@ export default class App extends React.Component {
   main() {
  
   const mainComponent =  
-        <View >
-        <Image source={require('./images/32799248.png')}/>
-        <Text >Welcom to our application 'Humanity' If you are from our family</Text>
-        <Text > and you want to signIn WELCOM from here press on signIn</Text>
+        <View style={{marginTop: 30, marginLeft:80,marginRight:50}} >
+        <Image source={require('./images/200x200-icon-drop.png')}/>
+   
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}>Welcome to our application 'Humanity' If you are from our family</Text>
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> and you want to signIn WELCOME from here press on signIn</Text>
+      
+        <Button title="signIn" onPress={() => this.show("showSignIn")} />
 
-        <TouchableOpacity onPress={this.signin.bind(this)}>
-          <Text>Sign In</Text>
-        </TouchableOpacity>
-    <Text > Or if you want to JOIN US WELLCOM from here</Text>
-        <TouchableOpacity onPress={this.signup.bind(this)}>
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
+       
+        <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> Or if you want to JOIN US WELLCOM from here</Text>
+        <Button title="signUp" onPress={() => this.show("showSignUp")} />
 
-  if (this.state.showSignIn && !this.state.mainComp && !this.state.showSignUp) {
-    return <SignIn/>
-  }
-  else if(!this.state.showSignIn && this.state.showMain && !this.state.showSignUp){
-    return mainComponent;
-     
-  }
-  else if(this.state.showSignUp && !this.state.mainComp && !this.state.showSignIn) {
-    return <SignUp/>;
+        
+        
+     </View>
+
+
+  if (this.state.showMain) {
+    return mainComponent; 
+  } else if (this.state.showSignIn) {
+    return <SignIn show = {this.show.bind(this)} />;
+  } else if (this.state.showSignInUser) {
+    return <LogInUsers show = {this.show.bind(this)} />;
+  } else if (this.state.showSignInOrg) {
+    return <LogInOrgs show = {this.show.bind(this)} />;
+  } else if(this.state.showSignUp) {
+    return <SignUp show = {this.show.bind(this)} />;
+  } else if(this.state.showSignUpOrg) {
+    return <OrgSignUp show = {this.show.bind(this)} />;
+  } else if(this.state.showSignUpUser) {
+    return <UserSignUp show = {this.show.bind(this)} />;
+  } else {
+    return  null;
   }
 }
 
@@ -80,10 +98,8 @@ export default class App extends React.Component {
       <View>
        {this.main()}
       </View>
-      
     );
   }
 }
-
 
 AppRegistry.registerComponent('App', () => App);

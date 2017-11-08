@@ -10,7 +10,11 @@ export default class Createevents extends React.Component {
             description: "",
             location: "",
             time: "",
-            created:false
+            duration:"",
+            agelimit:"",
+            volunteers:"",
+            created:false,
+            ShowOrgprofile:false
         };
     }
 
@@ -25,7 +29,10 @@ export default class Createevents extends React.Component {
                 name: this.state.name,
                 description: this.state.description,
                 location:this.state.location,
-                time:this.stat.time
+                time:this.state.time,
+                agelimit:this.state.agelimit,
+                duration :this.state.duration,
+                volunteers:this.state.volunteers
             })
         }) .then((response) => console.log(response))
             .then((data) => {
@@ -39,6 +46,7 @@ export default class Createevents extends React.Component {
     myFunctions(){
         this.creat();
         this.setState({created: true});
+        this.setState({ShowOrgprofile: true});
     }
 
     goCreate () {
@@ -69,13 +77,37 @@ export default class Createevents extends React.Component {
                     
                     onChangeText={(location) => this.setState({location})}
                 />
-                   <Text>time:</Text>
+                <Text>time:</Text>
                 <TextInput
                     style={{height: 50, width: 200}}
                     placeholder="time"
-                    returnKeyType = "go"
+                    returnKeyType = "next"
                     
                     onChangeText={(time) => this.setState({time})}
+                />
+                <Text>duration:</Text>
+                <TextInput
+                    style={{height: 50, width: 200}}
+                    placeholder="duration"
+                    returnKeyType = "next"
+                    
+                    onChangeText={(duration) => this.setState({duration})}
+                />
+                <Text>agelimit:</Text>
+                <TextInput
+                    style={{height: 50, width: 200}}
+                    placeholder="agelimit"
+                    returnKeyType = "next"
+                    
+                    onChangeText={(agelimit) => this.setState({agelimit})}
+                />
+                <Text>volunteers:</Text>
+                <TextInput
+                    style={{height: 50, width: 200}}
+                    placeholder="volunteers"
+                    returnKeyType = "go"
+                    
+                    onChangeText={(volunteers) => this.setState({volunteers})}
                 />
                 <Button title = "submit" onPress = {this.myFunctions.bind(this)} />
             </View>;

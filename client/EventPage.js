@@ -5,7 +5,6 @@ export default class EventPage extends React.Component {
   constructor(props) {
     super(props); 
         this.state = {
-      
         event: props.event,
         tag: props.tag,
         joined:false,
@@ -16,10 +15,12 @@ export default class EventPage extends React.Component {
       this.onJoin();
       this.setState({joined: true});
   }
-  myUnFunctions(){
+
+   myUnFunctions(){
       this.onUnJoin();
       this.setState({unjoined: true});
   }
+
   onJoin() {
       fetch(conf.url + '/events/join', {
       method: 'POST',
@@ -28,7 +29,7 @@ export default class EventPage extends React.Component {
       'Content-Type': 'application/json',
   },
       body: JSON.stringify({
-      id: this.state.event.id,
+      event_id: this.state.event.id,
       org_id:this.state.event.org_id
   })
   })
@@ -42,6 +43,7 @@ export default class EventPage extends React.Component {
         console.error(error);
       });
 }
+
 onUnJoin() {
       fetch(conf.url + '/events/unjoin', {
       method: 'DELETE',
@@ -68,13 +70,15 @@ showEv(){
   const myEv =  <View>
        <Image source={require("../images/blue.jpg")} >
         <TouchableOpacity >
+         <View style={{marginLeft:30,marginTop: 50}} > 
         <Text>{this.props.event.name}</Text>
         <Text>{this.props.event.description}</Text>
         <Text>{this.props.event.location}</Text>
         <Text>{this.props.event.time}</Text> 
-        <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
+        <View style = {{flexDirection:'row', marginTop: 30,marginLeft:10}}>
         <Text>               </Text>
           <Button title="unjoin" onPress = {this.myUnFunctions.bind(this)} /></View>
+          </View>
         </TouchableOpacity> 
         </Image>
       </View>
@@ -82,13 +86,16 @@ showEv(){
 
       const allEv =  <View>
        <Image source={require("../images/blue.jpg")} >
-        <TouchableOpacity >
+        <TouchableOpacity > 
+        <View style={{marginLeft:30,marginTop: 50}} > 
         <Text>{this.props.event.name}</Text>
         <Text>{this.props.event.description}</Text>
         <Text>{this.props.event.location}</Text>
         <Text>{this.props.event.time}</Text> 
-        <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
-          <Button title="join" onPress = {this.myFunctions.bind(this)} /><Text>               </Text>
+        <View style = {{flexDirection:'row', marginTop: 30,marginLeft:30}}>
+          <Button title="join" onPress = {this.myFunctions.bind(this)} />
+          <Text>               </Text>
+          </View>
           </View>
         </TouchableOpacity> 
         </Image>
@@ -110,27 +117,6 @@ showEv(){
     )
   }
 }
-// const styles = StyleSheet.create(
-//     {
-//         container: {
-    
-//             fontSize: 14,
-//             lineHeight: 24,
-//             color: "black"
-//         },
-//         container1: {  
-//             fontSize: 14,
-//             lineHeight: 24,
-//             color: "blue"
-//         },
-//         cont: {
-//             backgroundColor:"#99ceff",
-//             width:350,
-//             marginLeft:0,
-//             marginRight:0
-     
-//         //    justifyContent: 'space-between'
-//         }
-//     }
-// );
+
+
 
