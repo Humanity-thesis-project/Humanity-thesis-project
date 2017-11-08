@@ -13,17 +13,6 @@ export default class SignIn extends React.Component {
         };
     }
 
-    SignUp () {
-        this.setState({showUser: true, showOrg: false, mainComp: false});
-    }
-    Sign() {
-        this.setState({showOrg: true, showUser: false, mainComp: false});
-    }
-
-    goBack(){
-      this.setState({showUser: false, showOrg: false, mainComp: true});
-    }    
-
 
     render() {
         return (
