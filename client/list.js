@@ -17,7 +17,9 @@ export default class List extends React.Component {
         .then((data) => {
           console.log('------------------------------------>')
           console.log(data) 
-          this.setState({events: data[props.tag]["events"]});
+          if (Array.isArray(data[props.tag]["events"])) {
+            this.setState({events: data[props.tag]["events"]});
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -34,7 +36,7 @@ export default class List extends React.Component {
         return(
             <View>
               <Image source={require("../images/blue.jpg")} >
-              {this.state.events.map((event, index) => (<Entryevent key = {index} event = {event} tag={this.state.tag}/> ))}
+              {this.state.events.map((event, index) => (<Entryevent key = {index} event = {event} showEventPage = {this.props.showEventPage}  showEventPageOrg = {this.props.showEventPageOrg} tag={this.state.tag}/> ))}
               </Image>
          
             </View>       

@@ -46,16 +46,17 @@ onSignUp () {
         <Image source={require("../images/blue.jpg")} > 
           <View style = {{marginTop:50, marginRight: 50 ,marginLeft: 90}}>
    
-      <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:40,color:"white"}}> Sign Up </Text>
+      <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Sign Up </Text>
+    
    
-      <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Username:</Text>
+      <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Username:</Text>
       <TextInput
           style={{height: 50, width: 200 }}
           placeholder="Enter Username"
           returnKeyType = "next"
           onChangeText={(username) => this.setState({username})}
         />
-        <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Email:</Text>
+        <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Email:</Text>
         <TextInput
           style={{height: 50, width: 200}}
           placeholder="Enter Email"
@@ -64,7 +65,7 @@ onSignUp () {
           autoCapitalize = "none"
           onChangeText={(email) => this.setState({email})}
           />
-        <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Age:</Text>
+        <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Age:</Text>
         <TextInput
           style={{height: 50, width: 200}}
           placeholder="Enter Age"
@@ -73,7 +74,7 @@ onSignUp () {
           autoCapitalize = "none"
           onChangeText={(age) => this.setState({age})}
           />
-        <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Password:</Text>
+        <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Password:</Text>
         <TextInput
           style={{height: 50, width: 200}}
           placeholder="Enter Password"
@@ -85,8 +86,11 @@ onSignUp () {
         <View style={{marginLeft: 10,marginRight: 140}}>
         <Button title = "submit" onPress = {this.onSignUp.bind(this)} />
             </View>
+            <View style={{marginLeft: 10,marginRight: 140}}>
             <Text>{'\n'}{'\n'}</Text>
        <Button title = "BACK" style = {{marginTop:100}} onPress = {() => this.props.show("showSignUp")}/>
+          </View>
+         
           </View>
         </Image>
       </View>

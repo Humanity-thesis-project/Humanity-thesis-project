@@ -29,8 +29,8 @@ export default class App extends React.Component {
       type:"",
       info: {}
     };
-    const width = Dimensions.get('window').width
-    const height = Dimensions.get('window').height
+    // const width = Dimensions.get('window').width
+    // const height = Dimensions.get('window').height
   }
   show  (toShow)  {
     this.state[this.state.current] = false ;
@@ -63,15 +63,14 @@ export default class App extends React.Component {
         <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}>Welcome to our application 'Humanity' If you are from our family</Text>
         <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> and you want to signIn WELCOME from here press on signIn</Text>
       
-        <TouchableOpacity onPress={() => this.show("showSignIn")} >
+        <Button title="signIn" onPress={() => this.show("showSignIn")} />
 
-          <Text>Sign In</Text>
-        </TouchableOpacity>
+       
         <Text style={{fontSize:18,marginTop:20,fontStyle:'italic'}}> Or if you want to JOIN US WELLCOM from here</Text>
-        <TouchableOpacity onPress={() => this.show("showSignUp")} >
+        <Button title="signUp" onPress={() => this.show("showSignUp")} />
 
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
+        
+        
      </View>
 
 

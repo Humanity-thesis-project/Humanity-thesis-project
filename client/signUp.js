@@ -36,8 +36,10 @@ export default class SignUp extends React.Component {
                 <Text style = {styles.con}> ORG </Text>
                 </TouchableOpacity>
             </View>
+            <View style={{marginLeft: 110,marginRight: 240}}>
                 <Text>{'\n'}{'\n'}</Text>
-       <Button title = "BACK TO HOME PAGE" style = {{marginTop:100}} onPress = {() => this.props.show("showMain")}/>
+       <Button title = "BACK " style = {{marginTop:100}} onPress = {() => this.props.show("showMain")}/>
+       </View>
             </Image>
         
         

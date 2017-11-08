@@ -52,17 +52,17 @@ export default class OrgEditProf extends React.Component {
      <View>
       <Image source={require("../images/blue.jpg")} > 
       <View style = {{marginTop:10, marginRight: 50 ,marginLeft: 90}}>
-          <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:25,color:"white"}}> 
+          <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> 
  update my profile data </Text>
       
-     <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Name:</Text>
+     <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Name:</Text>
       <TextInput
         style={{height: 50, width: 200 }}
         placeholder="Enter New Name"
         returnKeyType = "next"
         onChangeText={(name) => this.setState({name})}
       />
-      <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Email:</Text>
+      <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Email:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Email"
@@ -71,7 +71,7 @@ export default class OrgEditProf extends React.Component {
         autoCapitalize = "none"
         onChangeText={(email) => this.setState({email})}
       />
-      <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Password:</Text>
+      <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Password:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Password"
@@ -79,7 +79,7 @@ export default class OrgEditProf extends React.Component {
         secureTextEntry = {true}
         onChangeText={(password) => this.setState({password})}
       />
-      <Text style={{fontWeight: "bold",fontSize:20,color:"white"}}>Update Description:</Text>
+      <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Update Description:</Text>
       <TextInput
         style={{height: 50, width: 200}}
         placeholder="Enter New Description"
