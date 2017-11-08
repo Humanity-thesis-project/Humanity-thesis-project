@@ -1,106 +1,114 @@
 
-import conf from '../config.js'
 import React from 'react';
 import { StyleSheet, Text, Alert, TextInput, View,TouchableOpacity, Button,Image} from 'react-native';
-import Navbar from './navbar';
-// imsport UserProfile from './userprofile';
 
-export default class LogInUsers extends React.Component {
+import conf from '../config.js'
+import List from './list';
+
+export default class EventsBy extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      username:'',
-      password:'',
-      signedIn: false,
-      userInfo:{}
+      events : [],
+      after : '',
+      before : '',
+      location : '',
     };
-     fetch( conf.url + '/users/signout',
-      {method:'GET'})
   }
-  
-    submitSignIn () { 
-      
-
-     fetch(conf.url + '/users/signin',
+  submitTime () { 
+   fetch(conf.url + '/events/bytime',
+    {
+      method:'POST',
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      },
+      body:JSON.stringify({
+        after:this.state.after ,
+        before:this.state.before
+      })
+    }) 
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.done && data.events.length) {
+        this.props.showEvents(data);
+      } else {
+        Alert.alert( 'SORRY', "no events match the filter !!", [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+  submitLocation () { 
+     fetch(conf.url + '/events/bylocation',
       {
-          method:'POST',
-          headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          },
-          body:JSON.stringify({
-            username:this.state.username ,
-            password:this.state.password})
-        }) .then((response) => response.json())
-           .then((data) => {
-            if (data.username) {
-                this.state.orgInfo = data;
-                this.setState({signedIn: true})
-              } else {
-                Alert.alert( 'SECURITY ALARM', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
-              }
-          })
-          .catch((error) => {
-              console.error(error);
-          });
+        method:'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({
+          location:this.state.location ,
+        })
+      }) 
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.done && data.events.length) {
+          this.props.showEvents(data);
+        } else {
+          Alert.alert( 'SORRY', "no events match the filter !!", [{text: 'OK', onPress: () => console.log('OK Pressed')}, ], { cancelable: true } )
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
 
+  render() {
+      return (
+        <View>
+          <Image source={require("../images/blue.jpg")} > 
+            <View style = {{marginTop:70, marginRight: 50 ,marginLeft: 90}}>
+              <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Submit Time </Text>
+              <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>After:</Text>
+              <TextInput 
+                style={{height: 50, width: 200 ,alignItems: 'center'}}
+                returnKeyType='next'
+                placeholder="Format : yyyy-mm-dd hh:mm"
+                onChangeText={(after) => this.setState({after})}
+                value={this.state.after}
+              />
+              <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Before:</Text>
+              <TextInput
+                returnKeyType='go'
+                style={{height: 50, width: 200,alignItems: 'center'}}
+                placeholder="Format : yyyy-mm-dd hh:mm"
+                secureTextEntry = {true}
+                onChangeText={(before) => this.setState({before})}
+                value={this.state.before}
+              />
+              <View style={{marginLeft: 10,marginRight: 140}}>
+                <Button title = "submit" onPress = {this.submitTime.bind(this)}/>
+              </View>
 
-
-    signOut(){
-      this.state.username = "";
-      this.state.password = "";
-      this.setState({signedIn: false})
-    }
-
-
-
-goToProfile () {
-
-  if(this.state.signedIn){
-    return <Navbar info = {this.state.userInfo} profile = {"user"} signOut = {this.signOut.bind(this)} />
-  } else {
-    return (<View>
-      <Image source={require("../images/blue.jpg")} > 
-      <View style = {{marginTop:170, marginRight: 50 ,marginLeft: 90}}>
-          <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Sign In </Text>
-         <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Username:</Text>
-          <TextInput 
-              style={{height: 50, width: 200 ,alignItems: 'center'}}
-              returnKeyType='next'
-              placeholder="Enter Yuor Username"
-              onChangeText={(username) => this.setState({username})}
-              value={this.state.username}
-            />
-            <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Password:</Text>
-            <TextInput
-              returnKeyType='go'
-              style={{height: 50, width: 200,alignItems: 'center'}}
-              placeholder="Enter Your Password"
-              secureTextEntry = {true}
-              onChangeText={(password) => this.setState({password})}
-              value={this.state.password}
-            />
-            <View style={{marginLeft: 10,marginRight: 140}}>
-            <Button title = "submit" onPress = {this.submitSignIn.bind(this)}/>
+            
+              <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Submit Location </Text>
+              <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Location:</Text>
+              <TextInput 
+                style={{height: 50, width: 200 ,alignItems: 'center'}}
+                returnKeyType='next'
+                placeholder="location"
+                onChangeText={(location) => this.setState({location})}
+                value={this.state.location}
+              />
+              <View style={{marginLeft: 10,marginRight: 140}}>
+                <Button title = "submit" onPress = {this.submitLocation.bind(this)}/>
+              </View>
             </View>
-            <View style={{marginLeft: 10,marginRight: 140}}>
-            <Text>{'\n'}{'\n'}</Text>
-       <Button title = "BACK" style = {{marginTop:100}} onPress = {() => this.props.show("showSignIn")}/>
-          </View>
-          </View>
-          </Image>
-          </View>)
-    }
+        </Image>
+      </View>
+    );
   }
-    render() {
-        return (
-            <View>
-                {this.goToProfile()}
-            </View>
-    
-        );
-    }
 }
-

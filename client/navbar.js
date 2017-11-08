@@ -13,6 +13,7 @@ import UserEditProf from './userEditProf';
 import EventPage from './EventPage';
 import EventPageOrg from './EventPageOrg';
 import UserProfileAsOrg from './UserProfileAsOrg';
+import EventsBy from './EventsBy';
 
 // const SideMenu = require('react-native-side-menu');
 
@@ -38,6 +39,7 @@ export default class Navbar extends React.Component {
      showEvents:false,         //all events
      showEventPage : false,    //event page
      showEventPageOrg : false, //event page org
+     showEventsBy : false, //event page org
      current: "showProfile" 
     };
     console.log(this.state.user);
@@ -74,6 +76,11 @@ export default class Navbar extends React.Component {
     this.setState({current : "showMyEvents"});
     this.setState({showMyEvents : true});
   }
+  showEventsBy () {
+    this.state[this.state.current] = false ;
+    this.setState({current : "showEventsBy"});
+    this.setState({showEventsBy : true});
+  }
 
   showUserProfileAsOrg (user) {
     this.state[this.state.current] = false ;
@@ -92,7 +99,14 @@ export default class Navbar extends React.Component {
     this.setState({showProfile : true});
   }
 
-  showEvents () {
+  showEvents (evs) {
+    if (evs && evs.length) {
+      this.setState({allEvents: evs})
+      this.state[this.state.current] = false ;
+      this.setState({current : "showEvents"});
+      this.setState({showEvents : true});
+      return ;
+    }
     console.log('showEvents')
     fetch(conf.url + '/events',{method:'GET'})
     .then((response) => response.json())
@@ -151,7 +165,9 @@ export default class Navbar extends React.Component {
     } else if (this.state.showEventPage) {
       return <EventPage event = {this.state.currentEvent} tag = {this.state.currentEventTag} />;
     } else if (this.state.showUserProfileAsOrg) {
-      return <UserProfileAsOrg information = {this.state.UserProfileAsOrg} tag = {this.state.showUserProfileAsOrg} />;
+      return <UserProfileAsOrg information = {this.state.UserProfileAsOrg} />;
+    } else if (this.state.showEventsBy) {
+      return <EventsBy showEvents = {this.showEvents.bind(this)}/>;
     } else  {
       return null;
     } 
@@ -168,15 +184,15 @@ export default class Navbar extends React.Component {
               borderRadius: 2,
               backgroundColor: '#00bfff'}}
           >
-          <Text>             </Text>
+          <Text>         </Text>
           <TouchableOpacity style = {{marginTop: 30,alignItems:'center'}} onPress = {this.showProfile.bind(this)}>
             <Text>PROFILE</Text>
           </TouchableOpacity>
           <Text>                  </Text>
-          <TouchableOpacity style = {{marginTop: 30}} onPress = {this.showEvents.bind(this)}>
+          <TouchableOpacity style = {{marginTop: 30}} onPress = {this.showEventsBy.bind(this)}>
                     <Text>FIND EVENTS</Text>
                   </TouchableOpacity>
-                  <Text>                 </Text>
+                  <Text>               </Text>
           <TouchableOpacity style = {{marginTop: 30}} onPress = {() => {this.logout.bind(this)()}}>
             <Text>LOGOUT {'\n'}{'\n'}</Text>
           </TouchableOpacity>
@@ -194,15 +210,15 @@ export default class Navbar extends React.Component {
               borderRadius: 2,
               backgroundColor: '#00bfff'}}
           >
-          <Text>             </Text>
+          <Text>         </Text>
           <TouchableOpacity style = {{marginTop: 30,alignItems:'center'}} onPress = {this.showProfile.bind(this)}>
             <Text>PROFILE</Text>
           </TouchableOpacity>
-          <Text>                  </Text>
+          <Text>                </Text>
           <TouchableOpacity style = {{marginTop: 30}} onPress = {this.showCreateEvent.bind(this)}>
                     <Text>CREATE EVENT</Text>
                   </TouchableOpacity>
-                  <Text>                 </Text>
+                  <Text>             </Text>
           <TouchableOpacity style = {{marginTop: 30}} onPress = {() => {this.logout.bind(this)()}}>
             <Text>LOGOUT {'\n'}{'\n'}</Text>
           </TouchableOpacity>
