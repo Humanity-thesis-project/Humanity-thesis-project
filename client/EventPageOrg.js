@@ -52,7 +52,7 @@ export default class EventPageOrg extends React.Component {
        console.log(data)
        console.log(this.state.tag)
       this.setState({deleted : true})
-       Alert.alert( 'DELETE ', data.message, [{text: 'OK', onPress: () => console.log('OK Pressed')}], { cancelable: true } )
+       Alert.alert( 'DELETE ', data.message, [{text: 'OK', onPress: () => this.props.showMyEvents()}], { cancelable: true } )
       })
       .catch((error) => {
         console.error(error);
@@ -70,10 +70,10 @@ export default class EventPageOrg extends React.Component {
     if (!this.state.deleted && !this.state.showUsers) { 
       return ( <View>
        <Image source={require("../images/blue.jpg")} >
-        <Text>{this.state.event.name}</Text>
-        <Text>{this.state.event.description}</Text>
-        <Text>{this.state.event.location}</Text>
-        <Text>{this.state.event.time}</Text> 
+        <Text style = {{marginLeft: 15, marginTop:20, color: "white", fontSize:20}}>{this.state.event.name}</Text>
+        <Text style = {{marginLeft: 15, marginTop:20, color: "white", fontSize:20}}>{this.state.event.description}</Text>
+        <Text style = {{marginLeft: 15, marginTop:20, color: "white", fontSize:20}}>{this.state.event.location}</Text>
+        <Text style = {{marginLeft: 15, marginTop:20, color: "white", fontSize:20}}>{this.state.event.time}</Text> 
         <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
         <Button title="Delete Event" onPress = {this.delete.bind(this)} />
         <Text>      </Text>
@@ -85,25 +85,25 @@ export default class EventPageOrg extends React.Component {
       return (
         <View>
        <Image source={require("../images/blue.jpg")} >
-        <Text>{this.state.event.name}</Text>
-        <Text>{this.state.event.description}</Text>
-        <Text>{this.state.event.location}</Text>
-        <Text>{this.state.event.time}</Text>
+        <Text style = {{marginLeft: 15, marginTop:20, color: "white", fontSize : 15}} >{this.state.event.name}</Text>
+        <Text style = {{marginLeft: 15, marginTop:10, color: "white", fontSize : 15}} >{this.state.event.description}</Text>
+        <Text style = {{marginLeft: 15, marginTop:10, color: "white", fontSize : 15}} >{this.state.event.location}</Text>
+        <Text style = {{marginLeft: 15, marginTop:10, color: "white", fontSize : 15}} >{this.state.event.time}</Text>
         
-        <View style = {{flexDirection:'row', marginTop: 50,marginLeft:30}}>
+        <View style = {{flexDirection:'row', marginTop: 35,marginLeft:30}}>
           <Button title="Hide Volunteers" onPress = {this.toggleVolunteers.bind(this)} />
           <Text>      </Text>
           <Button title="Delete Event" onPress = {this.delete.bind(this)} />
           <Text>      </Text>
         </View>
         
-    <View style= {{ alignItems:"center",borderColor: 'black',marginTop: 30, borderRadius: 2,backgroundColor: '#87cefa'}}>
+    <View style= {{ alignItems:"center",borderColor: 'black',marginTop: 30, borderRadius: 2,backgroundColor: '#87cefa',marginRight:120}}>
        <Text style = {{marginTop: 20}}>Volunteers {'\n'}{'\n'}</Text>
       </View>
 
         <FlatList
             data ={this.state.event.users}
-            renderItem ={({item}) =>  <TouchableOpacity onPress = {() => {this.props.showUserProfile(item)}} style= {{fontSize:20, alignContent:'center'}}><Text>{item.username}</Text></TouchableOpacity>
+            renderItem ={({item}) =>  <TouchableOpacity onPress = {() => {this.props.showUserProfile(item)}} style = {{marginLeft: 15, marginTop:20, fontSize : 15}}><Text style={{color: "white"}}>{item.username}</Text></TouchableOpacity>
             }
            >
         </FlatList>

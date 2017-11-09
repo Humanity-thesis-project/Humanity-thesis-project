@@ -11,18 +11,18 @@ import LogInOrgs from './client/LogInOrgs';
 import LogInUsers from './client/logInUsers';
 
 export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showSignIn: false,
-      showSignInOrg: false,
-      showSignInUser: false,
+ constructor() {
+   super();
+   this.state = {
+     showSignIn: false,
+     showSignInOrg: false,
+     showSignInUser: false,
 
-      showSignUp: false,
-      showSignUpOrg: false,
-      showSignUpUser: false,
-      
-      current: "showMain",
+     showSignUp: false,
+     showSignUpOrg: false,
+     showSignUpUser: false,
+     
+     current: "showMain",
 
       showMain: true,
       isLogged: false,
@@ -71,32 +71,32 @@ export default class App extends React.Component {
      </View>
 
 
-  if (this.state.showMain) {
-    return mainComponent; 
-  } else if (this.state.showSignIn) {
-    return <SignIn show = {this.show.bind(this)} />;
-  } else if (this.state.showSignInUser) {
-    return <LogInUsers show = {this.show.bind(this)} />;
-  } else if (this.state.showSignInOrg) {
-    return <LogInOrgs show = {this.show.bind(this)} />;
-  } else if(this.state.showSignUp) {
-    return <SignUp show = {this.show.bind(this)} />;
-  } else if(this.state.showSignUpOrg) {
-    return <OrgSignUp show = {this.show.bind(this)} />;
-  } else if(this.state.showSignUpUser) {
-    return <UserSignUp show = {this.show.bind(this)} />;
-  } else {
-    return  null;
-  }
+ if (this.state.showMain) {
+   return mainComponent;
+ } else if (this.state.showSignIn) {
+   return <SignIn show = {this.show.bind(this)} />;
+ } else if (this.state.showSignInUser) {
+   return <LogInUsers show = {this.show.bind(this)} />;
+ } else if (this.state.showSignInOrg) {
+   return <LogInOrgs show = {this.show.bind(this)} />;
+ } else if(this.state.showSignUp) {
+   return <SignUp show = {this.show.bind(this)} />;
+ } else if(this.state.showSignUpOrg) {
+   return <OrgSignUp show = {this.show.bind(this)} />;
+ } else if(this.state.showSignUpUser) {
+   return <UserSignUp show = {this.show.bind(this)} />;
+ } else {
+   return  null;
+ }
 }
 
-  render() {
-    return (
-      <View>
-       {this.main()}
-      </View>
-    );
-  }
+ render() {
+   return (
+     <View>
+      {this.main()}
+     </View>
+   );
+ }
 }
 
 AppRegistry.registerComponent('App', () => App);

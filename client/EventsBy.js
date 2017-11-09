@@ -70,8 +70,8 @@ export default class EventsBy extends React.Component {
       return (
         <View>
           <Image source={require("../images/blue.jpg")} > 
-            <View style = {{marginTop:70, marginRight: 50 ,marginLeft: 90}}>
-              <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Submit Time </Text>
+            <View style = {{alignItems: "center", marginRight: 120, marginTop:20}}>
+              <Text style={{fontWeight: "bold", marginBottom: 20,fontSize:20,color:"white"}}> Submit Time </Text>
               <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>After:</Text>
               <TextInput 
                 style={{height: 50, width: 200 ,alignItems: 'center'}}
@@ -89,12 +89,12 @@ export default class EventsBy extends React.Component {
                 onChangeText={(before) => this.setState({before})}
                 value={this.state.before}
               />
-              <View style={{marginLeft: 10,marginRight: 140}}>
+              <View style={{marginLeft: 10, marginBottom:10}}>
                 <Button title = "submit" onPress = {this.submitTime.bind(this)}/>
               </View>
 
             
-              <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Submit Location </Text>
+              <Text style={{fontWeight: "bold", marginBottom: 20, marginTop: 20,fontSize:20,color:"white"}}> Submit Location </Text>
               <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Location:</Text>
               <TextInput 
                 style={{height: 50, width: 200 ,alignItems: 'center'}}
@@ -103,7 +103,7 @@ export default class EventsBy extends React.Component {
                 onChangeText={(location) => this.setState({location})}
                 value={this.state.location}
               />
-              <View style={{marginLeft: 10,marginRight: 140}}>
+              <View style={{marginLeft: 10}}>
                 <Button title = "submit" onPress = {this.submitLocation.bind(this)}/>
               </View>
             </View>

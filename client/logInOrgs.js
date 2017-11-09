@@ -67,12 +67,13 @@ goToProfile () {
           <Image source={require("../images/blue.jpg")} > 
           <View style = {{marginTop:170, marginRight: 50 ,marginLeft: 90}}>
           
-              <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white"}}> Sign In </Text>
+              <Text style={{fontWeight: "bold", marginBottom: 30,fontSize:20,color:"white",marginLeft: 50}}> Sign In </Text>
               <Text style={{fontWeight: "bold",fontSize:13,color:"white"}}>Orgenization name:</Text>
-          <TextInput 
-              style={{height: 50, width: 200 ,alignItems: 'center'}}
-              returnKeyType='next'
-              placeholder="Enter Yuor Username"
+          <TextInput
+              returnKeyType='go'
+              style={{height: 50, width: 200,alignItems: 'center'}}
+              placeholder="Enter Your Name"
+              secureTextEntry = {true}
               onChangeText={(name) => this.setState({name})}
               value={this.state.name}
             />
