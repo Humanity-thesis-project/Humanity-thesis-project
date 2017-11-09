@@ -7,7 +7,7 @@ import OrgSignUp from './client/orgSignUp';
 import UserSignUp from './client/userSignUp';
 
 import SignIn from './client/signIn';
-import LogInOrgs from './client/LogInOrgs';
+import SignInOrg from './client/SignInOrg';
 import LogInUsers from './client/logInUsers';
 
 export default class App extends React.Component {
@@ -78,7 +78,7 @@ export default class App extends React.Component {
  } else if (this.state.showSignInUser) {
    return <LogInUsers show = {this.show.bind(this)} />;
  } else if (this.state.showSignInOrg) {
-   return <LogInOrgs show = {this.show.bind(this)} />;
+   return <SignInOrg show = {this.show.bind(this)} />;
  } else if(this.state.showSignUp) {
    return <SignUp show = {this.show.bind(this)} />;
  } else if(this.state.showSignUpOrg) {
